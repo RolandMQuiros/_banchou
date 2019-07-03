@@ -1,0 +1,27 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Banchou {
+    public class Attack : FSMBehaviour {
+        [SerializeField] private string _button = string.Empty;
+        [Header("Animation Parameters")]
+        [SerializeField] private string _onAttack = string.Empty;
+        [SerializeField] private string _stageOut = string.Empty;
+
+        private int _attackHash;
+        private int _stageHash;
+
+        public override void Inject(Animator stateMachine) {
+            _attackHash = Animator.StringToHash(_onAttack);
+            _stageHash = Animator.StringToHash(_stageOut);
+        }
+
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+            if (Input.GetButtonUp(_button)) {
+                animator.SetTrigger(_attackHash);
+                animator.SetInteger(_stageHash, animator.GetInteger(_stageHash));
+            }
+        }
+    }
+}
