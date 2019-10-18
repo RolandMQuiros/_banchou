@@ -43,5 +43,5 @@ namespace Redux
     /// <returns>
     ///     The updated state tree.
     /// </returns>
-    public delegate TState Reducer<TState>(TState previousState, object action);
+    public delegate TState Reducer<TState>(in TState previousState, in object action);
 }

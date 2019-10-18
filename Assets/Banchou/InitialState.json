@@ -1,0 +1,11 @@
+{
+    "Battle": {
+        "Pawns": {
+            "TestGuy": {
+                "ID": "TestGuy",
+                "Health": 10,
+                "Commands": []
+            }
+        }
+    }
+}

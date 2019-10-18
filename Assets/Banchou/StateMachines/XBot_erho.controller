@@ -1483,6 +1483,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours:
+  - {fileID: -2925367687651901764}
   - {fileID: 8025012715066419830}
   - {fileID: 3886655195447901695}
   - {fileID: 7494908632241172315}
@@ -1869,6 +1870,23 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0
   _movementSpeedOut: 
+--- !u!114 &-2925367687651901764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d836132db5edd4f46a55ec3027db90d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: 'This state does FSM-wide checks and updates the parameters accordingly.
+
+    Any parameter not marked with [Command] is an internal value only updated by FSMBehaviours.
+
+'
 --- !u!114 &-2916278164725755143
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2632,6 +2650,12 @@ AnimatorController:
   m_Name: XBot_erho
   serializedVersion: 5
   m_AnimatorParameters:
+  - m_Name: Health
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
@@ -3899,27 +3923,27 @@ AnimatorStateMachine:
   m_EntryTransitions:
   - {fileID: -4635048351620742699}
   m_StateMachineTransitions:
-  - first: {fileID: -6593190220038298720}
-    second:
-    - {fileID: 94368395407801475}
   - first: {fileID: -8428430860054063862}
     second:
     - {fileID: -1420478526868845977}
     - {fileID: 4465528234084754942}
     - {fileID: 4348405956516266464}
-  - first: {fileID: 3284692907232856101}
+  - first: {fileID: -6593190220038298720}
     second:
-    - {fileID: -7868914936022772201}
+    - {fileID: 94368395407801475}
   - first: {fileID: -3517914797529691560}
     second:
     - {fileID: 5973533555387470996}
+  - first: {fileID: -1637710064679983902}
+    second:
+    - {fileID: 4135128274865384075}
   - first: {fileID: 1477917606005653540}
     second:
     - {fileID: 8786621535313874889}
     - {fileID: -6394099024806995088}
-  - first: {fileID: -1637710064679983902}
+  - first: {fileID: 3284692907232856101}
     second:
-    - {fileID: 4135128274865384075}
+    - {fileID: -7868914936022772201}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 330, y: 70, z: 0}
   m_EntryPosition: {x: 330, y: 100, z: 0}
