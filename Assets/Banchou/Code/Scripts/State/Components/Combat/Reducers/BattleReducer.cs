@@ -7,11 +7,20 @@ namespace Banchou {
             if (pawnAction != null) {
                 Pawn pawn;
                 if (prev.Pawns.TryGetValue(pawnAction.PawnID, out pawn)) {
-                    var newPawns = new Dictionary<string, Pawn>(prev.Pawns);
-                    newPawns[pawnAction.PawnID] = PawnReducer(pawn, prev.Pawns, action);
+                    // Check for team damage
+                    var damage = action as Action.DamagePawn;
+                    if (damage != null) {
+                        var other = prev.Pawns.Get(damage?.From);
+                        // TODO?: Friendly fire
+                        if (other != null && other.Team == pawn.Team ) {
+                            return prev;
+                        }
+                    }
                     return new Battle(
                         prev,
-                        pawns: newPawns
+                        pawns: new Dictionary<string, Pawn>(prev.Pawns) {
+                            [pawnAction.PawnID] = PawnReducer(pawn, action)
+                        }
                     );
                 }
             }

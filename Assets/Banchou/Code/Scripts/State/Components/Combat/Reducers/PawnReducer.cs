@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Banchou {
     public static partial class Reducers {
-        private static Pawn PawnReducer(in Pawn prev, in Dictionary<string, Pawn> pawns, in object action) =>
-            ApplyDamage(prev, pawns, action) ??
+        private static Pawn PawnReducer(in Pawn prev, in object action) =>
+            ApplyDamage(prev, action) ??
             ApplyCommands(prev, action) ??
             prev;
 
-        private static Pawn ApplyDamage(in Pawn prev, in Dictionary<string, Pawn> pawns, in object action) {
+        private static Pawn ApplyDamage(in Pawn prev, in object action) {
             var heal = action as Action.HealPawn;
             if (heal != null) {
                 return new Pawn(
@@ -20,14 +20,11 @@ namespace Banchou {
 
             var damage = action as Action.DamagePawn;
             if (damage != null) {
-                var other = pawns.Get(damage.From);
-                if (other == null || other.Team != prev.Team) {
-                    return new Pawn(
-                        prev,
-                        health: prev.Health - damage.Amount,
-                        push: damage.Push
-                    );
-                }
+                return new Pawn(
+                    prev,
+                    health: prev.Health - damage.Amount,
+                    push: damage.Push
+                );
             }
 
             var pushed = action as Action.PawnPushed;

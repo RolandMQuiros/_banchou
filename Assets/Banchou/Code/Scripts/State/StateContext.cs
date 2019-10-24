@@ -16,6 +16,14 @@ namespace Banchou {
 
         public object Dispatch(object action) => _store.Dispatch(action);
 
+        private void Awake() {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings {
+                Converters = new List<JsonConverter> {
+                    new Vector3JSONConverter()
+                }
+            };
+        }
+
         private void Start() {
             var middleware = GetComponents<IMiddleware<State>>()
                 .Select(m => m.Run)
