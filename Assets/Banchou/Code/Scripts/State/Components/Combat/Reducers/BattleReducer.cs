@@ -6,9 +6,9 @@ namespace Banchou {
             var pawnAction = action as Action.PawnAction;
             if (pawnAction != null) {
                 Pawn pawn;
-                if (prev.Pawns.TryGetValue(pawnAction.ID, out pawn)) {
+                if (prev.Pawns.TryGetValue(pawnAction.PawnID, out pawn)) {
                     var newPawns = new Dictionary<string, Pawn>(prev.Pawns);
-                    newPawns[pawnAction.ID] = pawn;
+                    newPawns[pawnAction.PawnID] = PawnReducer(pawn, prev.Pawns, action);
                     return new Battle(
                         prev,
                         pawns: newPawns

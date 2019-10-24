@@ -1,22 +1,28 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Banchou {
     public class Pawn {
         public interface IQueuedCommand { }
-        public string ID = default(string);
-        public int Health = default(int);
-        public IEnumerable<IQueuedCommand> Commands = Enumerable.Empty<IQueuedCommand>();
-
+        public string ID;
+        public int Team;
+        public int Health;
+        public Vector3 Push;
+        public IEnumerable<IQueuedCommand> Commands;
         public Pawn(
-            Pawn prev = null,
+            in Pawn prev = null,
             string id = null,
+            int? team = null,
             int? health = null,
+            Vector3? push = null,
             IEnumerable<IQueuedCommand> commands = null
         ) {
             ID = id ?? prev?.ID ?? ID;
-            Health = health ?? prev?.Health ?? Health;
-            Commands = commands ?? prev?.Commands ?? Commands;
+            Team = team ?? prev?.Team ?? 0;
+            Health = health ?? prev?.Health ?? 0;
+            Push = push ?? prev?.Push ?? Vector3.zero;
+            Commands = commands ?? prev?.Commands ?? Enumerable.Empty<IQueuedCommand>();
         }
     }
 }
