@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using Banchou.State;
 
 namespace Banchou {
     public class StateObserver : MonoBehaviour {
-        public IObservable<State> ObserveState => _stream;
-        private IObservable<State> _stream;
-        public void Inject(IObservable<State> stream) {
+        public IObservable<GameState> ObserveState => _stream;
+        private IObservable<GameState> _stream;
+        public void Inject(IObservable<GameState> stream) {
             _stream = stream;
         }
     }

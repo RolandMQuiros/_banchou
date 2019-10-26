@@ -7,11 +7,13 @@ using UnityEngine;
 using Redux;
 using Redux.Reactive;
 
+using Banchou.State;
+
 namespace Banchou {
     public class StateContext : MonoBehaviour {
         [SerializeField] private TextAsset _initialState = null;
 
-        private Store<State> _store;
+        private Store<GameState> _store;
         private HashSet<IStoreConnector> _connectors;
 
         public object Dispatch(object action) => _store.Dispatch(action);
@@ -25,16 +27,13 @@ namespace Banchou {
         }
 
         private void Start() {
-            var middleware = GetComponents<IMiddleware<State>>()
-                .Select(m => m.Run)
+            var middleware = GetComponents<IMiddleware<GameState>>()
+                .Select(m => m.Middleware)
                 .ToArray();
             
-            _store = new Store<State>(
-                (in State prev, in object action) => new State(
-                    prev,
-                    battle: Reducers.BattleReducer(prev.Battle, action)
-                ),
-                _initialState != null ? JsonConvert.DeserializeObject<State>(_initialState.text) : new State(),
+            _store = new Store<GameState>(
+                Reducers.GameStateReducer,
+                _initialState != null ? JsonConvert.DeserializeObject<GameState>(_initialState.text) : new GameState(),
                 middleware
             );
 

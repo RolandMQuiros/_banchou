@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 using Banchou;
 
-[CustomEditor(typeof(StateContext))]
+//[CustomEditor(typeof(StateContext))]
 public class StateContextEditor : Editor {
     private StateContext _target;
     private SerializedProperty _initialState;

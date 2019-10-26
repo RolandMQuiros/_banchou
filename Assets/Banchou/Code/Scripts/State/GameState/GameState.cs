@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Banchou.State.Model;
 
 namespace Banchou {
-    public class State {
+    public class GameState {
         public Battle Battle;
 
-        public State(
-            State prev = null,
+        public GameState(
+            GameState prev = null,
             Battle battle = null
         ) {
             Battle = battle ?? prev?.Battle ?? new Battle();

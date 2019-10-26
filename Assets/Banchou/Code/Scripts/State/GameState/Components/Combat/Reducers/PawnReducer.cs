@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Banchou.State.Model;
 
-namespace Banchou {
+namespace Banchou.State {
     public static partial class Reducers {
         private static Pawn PawnReducer(in Pawn prev, in object action) =>
             ApplyDamage(prev, action) ??

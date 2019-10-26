@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Banchou {
+namespace Banchou.State.Model {
     public class Battle {
         public Dictionary<string, Pawn> Pawns;
 

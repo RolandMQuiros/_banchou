@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Banchou.State.Model;
 
-namespace Banchou {
+namespace Banchou.State {
     public static partial class Reducers {
         public static Battle BattleReducer(in Battle prev, in object action) {
             var pawnAction = action as Action.PawnAction;

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Banchou {
     public class HitVolume : DispatcherBehaviour {
@@ -12,8 +11,8 @@ namespace Banchou {
         private void OnTriggerEnter(Collider other) {
             var hurt = other.GetComponent<HurtVolume>();
             if (hurt != null) {
-                Dispatch(
-                    Actions.DamagePawn(
+                Dispatcher?.Invoke(
+                    State.Actions.DamagePawn(
                         _pawnID,
                         from: hurt.PawnID,
                         amount: hurt.BaseDamage

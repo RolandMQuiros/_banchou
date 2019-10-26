@@ -18,7 +18,7 @@ namespace Banchou.Part {
         [SerializeField] private string _pushYParameter = "Push Y";
         [SerializeField] private string _pushZParameter = "Push Z";
 
-        public void Inject(IObservable<State> observeState, Func<object, object> dispatch) {
+        public void Inject(IObservable<GameState> observeState, Func<object, object> dispatch) {
             var stateMachine = GetComponent<Animator>();
             
             var observePawn = observeState
