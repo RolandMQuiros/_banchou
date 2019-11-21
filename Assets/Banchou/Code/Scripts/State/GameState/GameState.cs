@@ -1,14 +1,18 @@
-﻿using Banchou.State.Model;
+﻿using UnityEngine;
+using Sirenix.OdinInspector;
 
-namespace Banchou {
-    public class GameState {
-        public Battle Battle;
+using Banchou.Combat.State;
+
+namespace Banchou.State {
+    [CreateAssetMenu(menuName = "Banchou/Game State")]
+    public class GameState : SerializedScriptableObject {
+        public BattleState Battle = new BattleState();
 
         public GameState(
             GameState prev = null,
-            Battle battle = null
+            BattleState battle = null
         ) {
-            Battle = battle ?? prev?.Battle ?? new Battle();
+            Battle = battle ?? prev?.Battle ?? new BattleState();
         }
     }
 }

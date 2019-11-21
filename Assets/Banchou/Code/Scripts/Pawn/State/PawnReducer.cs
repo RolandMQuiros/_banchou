@@ -1,19 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
-using Banchou.State.Model;
 
-namespace Banchou.State {
-    public static partial class Reducers {
-        private static Pawn PawnReducer(in Pawn prev, in object action) =>
+namespace Banchou.Pawn.State {
+    public static class PawnReducer {
+        public static PawnState Reduce(in PawnState prev, in object action) =>
             ApplyDamage(prev, action) ??
             ApplyCommands(prev, action) ??
             prev;
 
-        private static Pawn ApplyDamage(in Pawn prev, in object action) {
+        private static PawnState ApplyDamage(in PawnState prev, in object action) {
             var heal = action as Action.HealPawn;
             if (heal != null) {
-                return new Pawn(
+                return new PawnState(
                     prev,
                     health: prev.Health + heal.Amount
                 );
@@ -21,7 +19,7 @@ namespace Banchou.State {
 
             var damage = action as Action.DamagePawn;
             if (damage != null) {
-                return new Pawn(
+                return new PawnState(
                     prev,
                     health: prev.Health - damage.Amount,
                     push: damage.Push
@@ -30,7 +28,7 @@ namespace Banchou.State {
 
             var pushed = action as Action.PawnPushed;
             if (pushed != null) {
-                return new Pawn(
+                return new PawnState(
                     prev,
                     push: Vector3.zero
                 );
@@ -39,10 +37,10 @@ namespace Banchou.State {
             return null;
         }
 
-        private static Pawn ApplyCommands(in Pawn prev, in object action) {
+        private static PawnState ApplyCommands(in PawnState prev, in object action) {
             var push = action as Action.PushPawnCommand;
             if (push != null) {
-                return new Pawn(
+                return new PawnState(
                     prev,
                     commands: prev.Commands.Append(push.Command)
                 );
@@ -50,7 +48,7 @@ namespace Banchou.State {
 
             var pop = action as Action.PopPawnCommand;
             if (pop != null) {
-                return new Pawn(
+                return new PawnState(
                     prev,
                     commands: prev.Commands.Reverse()
                                            .Skip(1)
@@ -60,9 +58,9 @@ namespace Banchou.State {
 
             var clear = action as Action.ClearPawnCommands;
             if (clear != null) {
-                return new Pawn(
+                return new PawnState(
                     prev,
-                    commands: Enumerable.Empty<Pawn.IQueuedCommand>()
+                    commands: Enumerable.Empty<PawnState.IQueuedCommand>()
                 );
             }
 

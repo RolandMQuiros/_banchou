@@ -32,7 +32,7 @@ namespace Banchou {
                 .ToArray();
             
             _store = new Store<GameState>(
-                Reducers.GameStateReducer,
+                GameStateReducer.Reduce,
                 _initialState != null ? JsonConvert.DeserializeObject<GameState>(_initialState.text) : new GameState(),
                 middleware
             );

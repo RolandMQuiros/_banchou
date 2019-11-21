@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Banchou.FSM {
     public class Jump : FSMBehaviour {
@@ -7,11 +8,7 @@ namespace Banchou.FSM {
         [SerializeField] private Vector3 _force = new Vector3();
         [SerializeField] private ForceMode _forceMode = ForceMode.VelocityChange;
         [SerializeField] private bool _relativeToBody = false;
-        private Rigidbody _body;
-
-        public override void Inject(Animator stateMachine) {
-            _body = stateMachine.GetComponentInChildren<Rigidbody>();    
-        }
+        [Inject] private Rigidbody _body = null;
 
         private void ApplyForce() {
             if (_relativeToBody) { _body.AddRelativeForce(_force, _forceMode); }

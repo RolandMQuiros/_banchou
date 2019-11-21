@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
-using Banchou.State.Model;
 
-namespace Banchou.State {
-    public static partial class Reducers {
-        public static Battle BattleReducer(in Battle prev, in object action) {
-            var pawnAction = action as Action.PawnAction;
+using Banchou.Pawn.State;
+using Banchou.Pawn.State.Action;
+
+namespace Banchou.Combat.State {
+    internal static class BattleReducer {
+        public static BattleState Reduce(in BattleState prev, in object action) {
+            var pawnAction = action as PawnAction;
             if (pawnAction != null) {
-                Pawn pawn;
+                PawnState pawn;
                 if (prev.Pawns.TryGetValue(pawnAction.PawnID, out pawn)) {
                     // Check for team damage
-                    var damage = action as Action.DamagePawn;
+                    var damage = action as DamagePawn;
                     if (damage != null) {
                         var other = prev.Pawns.Get(damage?.From);
                         // TODO?: Friendly fire
@@ -17,10 +19,10 @@ namespace Banchou.State {
                             return prev;
                         }
                     }
-                    return new Battle(
+                    return new BattleState(
                         prev,
-                        pawns: new Dictionary<string, Pawn>(prev.Pawns) {
-                            [pawnAction.PawnID] = PawnReducer(pawn, action)
+                        pawns: new Dictionary<string, PawnState>(prev.Pawns) {
+                            [pawnAction.PawnID] = PawnReducer.Reduce(pawn, action)
                         }
                     );
                 }

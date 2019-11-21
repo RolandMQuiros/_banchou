@@ -1,13 +1,17 @@
 ﻿using System;
 using UnityEngine;
 using UniRx;
+using Zenject;
+
+using Banchou.State;
+using Banchou.Combat.State;
 
 namespace Banchou.Part {
     /// <summary>
     /// Applies changes to a Combatant's state to a Pawn's state machine
     /// </summary>
     [RequireComponent(typeof(Animator))]
-    public class CombatantPawn : MonoBehaviour, IStoreConnector {
+    public class CombatantPawn : MonoBehaviour {
         public string PawnID { get; set; }
         [Header("Stat FSM Parameters")]
         [SerializeField] private string _healthParameter = "Health";
@@ -18,7 +22,8 @@ namespace Banchou.Part {
         [SerializeField] private string _pushYParameter = "Push Y";
         [SerializeField] private string _pushZParameter = "Push Z";
 
-        public void Inject(IObservable<GameState> observeState, Func<object, object> dispatch) {
+        [Inject]
+        public void Connect(IObservable<GameState> observeState, Dispatcher dispatch) {
             var stateMachine = GetComponent<Animator>();
             
             var observePawn = observeState

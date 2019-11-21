@@ -1,9 +1,10 @@
-using Banchou.State.Model;
+using Banchou.State;
+using Banchou.Pawn.State;
 
-namespace Banchou {
+namespace Banchou.Combat.State {
     public static class CombatSelectors {
-        public static Pawn GetPawn(this GameState state, string pawnID) {
-            Pawn pawn;
+        public static PawnState GetPawn(this GameState state, string pawnID) {
+            PawnState pawn;
             if (state.Battle.Pawns.TryGetValue(pawnID, out pawn)) {
                 return pawn;
             }

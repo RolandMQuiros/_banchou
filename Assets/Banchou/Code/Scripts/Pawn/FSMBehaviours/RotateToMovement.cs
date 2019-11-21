@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using Zenject;
 
 namespace Banchou {
     public class RotateToMovement : FSMBehaviour {
         [SerializeField] private float _rotationSpeed = 1000f;
-        private Transform _orientation;
-        private Rigidbody _body;
-
-        public override void Inject(Animator stateMachine) {
-            _orientation = stateMachine.GetComponentInChildren<Part.Orientation>().transform;
-            _body = stateMachine.GetComponentInChildren<Rigidbody>();
-        }
+        [Inject] private Transform _orientation = null;
+        [Inject] private Rigidbody _body = null;
 
         public override void OnStateEnter(Animator stateMachine, AnimatorStateInfo stateInfo, int layerIndex) {
             Vector3 direction = new Vector3();

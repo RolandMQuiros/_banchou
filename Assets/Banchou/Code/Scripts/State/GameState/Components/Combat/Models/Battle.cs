@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using Banchou.Pawn.State;
 
-namespace Banchou.State.Model {
-    public class Battle {
-        public Dictionary<string, Pawn> Pawns;
+namespace Banchou.Combat.State {
+    public class BattleState {
+        public Dictionary<string, PawnState> Pawns = new Dictionary<string, PawnState>();
 
-        public Battle(
-            Battle prev = null,
-            Dictionary<string, Pawn> pawns = null
+        public BattleState(
+            BattleState prev = null,
+            Dictionary<string, PawnState> pawns = null
         ) {
-            Pawns = pawns ?? prev?.Pawns ?? new Dictionary<string, Pawn>();
+            Pawns = pawns ?? prev?.Pawns ?? new Dictionary<string, PawnState>();
         }
     }
 }

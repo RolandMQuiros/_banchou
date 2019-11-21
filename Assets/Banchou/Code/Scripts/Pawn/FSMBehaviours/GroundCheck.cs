@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Banchou.FSM {
     public class GroundCheck : FSMBehaviour {
         [SerializeField] private string _groundedParameter = string.Empty;
-        private Part.GroundedVolume _grounded;
+        [Inject] private Part.GroundedVolume _grounded = null;
         private int _groundedHash;
-        public override void Inject(Animator stateMachine) {
-            _grounded = stateMachine.GetComponentInChildren<Part.GroundedVolume>();
+        
+        private void OnEnable() {
             _groundedHash = Animator.StringToHash(_groundedParameter);
         }
 

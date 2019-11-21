@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Banchou.State.Model {
-    public class Pawn {
+namespace Banchou.Pawn.State {
+    public class PawnState {
         public interface IQueuedCommand { }
         public string ID;
         public int Team;
         public int Health;
         public Vector3 Push;
-        public IEnumerable<IQueuedCommand> Commands;
-        public Pawn(
-            in Pawn prev = null,
+        public IEnumerable<IQueuedCommand> Commands = Enumerable.Empty<IQueuedCommand>();
+        public PawnState(
+            in PawnState prev = null,
             string id = null,
             int? team = null,
             int? health = null,

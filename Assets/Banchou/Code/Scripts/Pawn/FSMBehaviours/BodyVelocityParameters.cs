@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Zenject;
 
 namespace Banchou.FSM {
-    public class BodyVelocityParameters : FSMBehaviour {
+    public class BodyVelocityParameters : StateMachineBehaviour {
         [Header("State Parameters")]
         [SerializeField] private string _xSpeed = string.Empty;
         [SerializeField] private string _ySpeed = string.Empty;
         [SerializeField] private string _zSpeed = string.Empty;
-        private Rigidbody _body;
+        [Inject] private Rigidbody _body = null;
         private int _xSpeedHash, _ySpeedHash, _zSpeedHash;
 
-        public override void Inject(Animator stateMachine) {
-            _body = stateMachine.GetComponentInChildren<Rigidbody>();
+        private void OnEnable() {
             _xSpeedHash = Animator.StringToHash(_xSpeed);
             _ySpeedHash = Animator.StringToHash(_ySpeed);
             _zSpeedHash = Animator.StringToHash(_zSpeed);

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Banchou.FSM {
     public class EatTriggers : FSMBehaviour {
@@ -11,7 +12,8 @@ namespace Banchou.FSM {
         [SerializeField] private string[] _triggers = null;
         private HashSet<int> _hashes;
 
-        public override void Inject(Animator stateMachine) {
+        [Inject]
+        public void Attach(Animator stateMachine) {
             _hashes = new HashSet<int>(
                 _triggers.Join(
                     stateMachine.parameters,

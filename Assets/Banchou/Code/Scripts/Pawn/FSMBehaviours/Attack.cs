@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Banchou {
+namespace Banchou.Pawn.FSM {
     public class Attack : FSMBehaviour {
         [SerializeField] private string _button = string.Empty;
         [Header("Animation Parameters")]
@@ -12,7 +10,7 @@ namespace Banchou {
         private int _attackHash;
         private int _stageHash;
 
-        public override void Inject(Animator stateMachine) {
+        private void Start() {
             _attackHash = Animator.StringToHash(_onAttack);
             _stageHash = Animator.StringToHash(_stageOut);
         }

@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using Zenject;
 
 namespace Banchou.FSM {
     public class MotorRootMotion : FSMBehaviour {
         [SerializeField] private bool _rootPosition = true;
-        private Part.IMotor _motor;
-        private Transform _orientation;
-        public override void Inject(Animator stateMachine) {
-            _motor = stateMachine.GetComponentInChildren<Part.IMotor>();
-            _orientation = stateMachine.GetComponentInChildren<Part.Orientation>().transform;
-        }
+        [Inject] private Part.IMotor _motor = null;
 
         public override void OnStateEnter(Animator stateMachine, AnimatorStateInfo stateInfo, int layerIndex) {
             if (_rootPosition) {

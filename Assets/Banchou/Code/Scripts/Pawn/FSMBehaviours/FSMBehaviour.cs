@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,7 +32,5 @@ namespace Banchou {
                 toDispose.ForEach(s => s.Dispose());
             }
         }
-        
-        public virtual void Inject(Animator stateMachine) { }
     }
 }

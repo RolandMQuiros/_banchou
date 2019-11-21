@@ -5,16 +5,21 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UniRx;
 
+using Zenject;
+
 namespace Banchou.FSM {
     public class CommandEvents : FSMBehaviour {
         [SerializeField] private Part.Command[] _commands = null;
         [SerializeField] private float _delay = 0f;
         [SerializeField] private bool _filter = false;
-        private Part.ICommandStream _commandStream;
+        [Inject] private Part.ICommandStream _commandStream = null;
         private Dictionary<Part.Command, int> _lookup;
 
-        public override void Inject(Animator stateMachine) {
-            _commandStream = stateMachine.GetComponentInChildren<Part.ICommandStream>();
+        [Inject]
+        public void Attach(
+            Animator stateMachine,
+            Part.ICommandStream commandStream
+        ) {
             IEnumerable<Part.Command> commands;
             if (_filter) {
                 commands = Enum.GetValues(typeof(Part.Command))

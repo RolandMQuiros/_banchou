@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Banchou {
     public class InputMovement : FSMBehaviour {
@@ -9,26 +10,21 @@ namespace Banchou {
         [Header("Animation Parameters")]
         [SerializeField] private string _movementSpeedOut = string.Empty;
 
-        private Part.IMovementInput _input;
-        private Part.IMotor _motor;
-        private Transform _orientation;
-        private Animator _animator;
+        [Inject] private Part.IMovementInput _input = null;
+        [Inject] private Part.IMotor _motor = null;
+        [Inject] private Part.Orientation _orientation = null;
+        [Inject] private Animator _animator = null;
         private int _speedOut;
 
         private Vector3 _faceDirection;
         private float _flipTimer = 0f;
 
-        public override void Inject(Animator stateMachine) {
-            _input         = stateMachine.GetComponentInChildren<Part.IMovementInput>();
-            _motor         = stateMachine.GetComponentInChildren<Part.IMotor>();
-            _orientation   = stateMachine.GetComponentInChildren<Part.Orientation>().transform;
-            _animator      = stateMachine.GetComponentInChildren<Animator>();
-
+        private void OnEnable() {
             _speedOut = Animator.StringToHash(_movementSpeedOut);
         }
 
         public override void OnStateEnter(Animator stateMachine, AnimatorStateInfo stateInfo, int layerIndex) {
-            _faceDirection = _orientation.forward;
+            _faceDirection = _orientation.transform.forward;
         }
 
         public override void OnStateUpdate(Animator stateMachine, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -46,8 +42,8 @@ namespace Banchou {
                     }
                 }
 
-                _orientation.rotation = Quaternion.RotateTowards(
-                    _orientation.rotation,
+                _orientation.transform.rotation = Quaternion.RotateTowards(
+                    _orientation.transform.rotation,
                     Quaternion.LookRotation(_faceDirection.normalized),
                     _rotationSpeed * Time.fixedDeltaTime
                 );
@@ -55,7 +51,7 @@ namespace Banchou {
 
             if (!string.IsNullOrWhiteSpace(_movementSpeedOut)) {
                 var relativeDirection = Mathf.Sign(
-                    Vector3.Dot(_faceDirection, _orientation.forward)
+                    Vector3.Dot(_faceDirection, _orientation.transform.forward)
                 );
                 _animator.SetFloat(_speedOut, velocity.magnitude * relativeDirection);
             }

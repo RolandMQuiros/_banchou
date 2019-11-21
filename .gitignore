@@ -25,6 +25,12 @@
 # UniRx
 [Aa]ssets/Plugins/UniRx*
 
+# Zenject
+[Aa]ssets/Plugins/Zenject*
+
+# Odin
+[Aa]ssets/Plugins/Sirenix*
+
 # Visual Studio cache directory
 .vs/
 

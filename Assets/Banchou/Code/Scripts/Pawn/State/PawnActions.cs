@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using Banchou.State.Model;
 
-namespace Banchou.State {
+namespace Banchou.Pawn.State {
     namespace Action {
         public class PawnAction {
             public string PawnID;
@@ -20,22 +19,22 @@ namespace Banchou.State {
         }
 
         public class PushPawnCommand : PawnAction {
-            public Pawn.IQueuedCommand Command;
+            public PawnState.IQueuedCommand Command;
         }
 
         public class PopPawnCommand : PawnAction { }
         public class ClearPawnCommands : PawnAction { }
     }
 
-    public static partial class Actions {
-        public static Action.DamagePawn DamagePawn(
+    public class PawnActions {
+        public Action.DamagePawn DamagePawn(
             string pawnID,
             string from = default,
             int amount = 0,
             Vector3 push = default
         ) => new Action.DamagePawn { PawnID = pawnID, From = from, Amount = amount, Push = push};
-        public static Action.PawnPushed PawnPushed(string pawnID) => new Action.PawnPushed { PawnID = pawnID };
-        public static Action.HealPawn HealPawn(string pawnID, int amount) => new Action.HealPawn {
+        public Action.PawnPushed PawnPushed(string pawnID) => new Action.PawnPushed { PawnID = pawnID };
+        public Action.HealPawn HealPawn(string pawnID, int amount) => new Action.HealPawn {
             PawnID = pawnID,
             Amount = amount
         };
