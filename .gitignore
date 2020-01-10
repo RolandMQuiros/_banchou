@@ -70,10 +70,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-# Mesh files
-*.fbx
-*.fbx.meta
-
 # NuGet Packages
 /[Aa]ssets/[Pp]ackages/
 /[Aa]ssets/[Pp]ackages.meta
