@@ -48,7 +48,7 @@ namespace Banchou {
                     // remain facing in the current direction for a short time. Allows the player to
                     // more easily execute Pull Attacks
                     var faceMotionDot = Vector3.Dot(direction, _faceDirection);
-                    if (faceMotionDot <= 0.01f && _flipTimer < _flipDelay) {
+                    if (faceMotionDot <= -0.01f && _flipTimer < _flipDelay) {
                         _flipTimer += Time.fixedDeltaTime;
                     } else {
                         _faceDirection = direction;
