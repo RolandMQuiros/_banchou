@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UniRx;
-
 using Zenject;
+using Sirenix.OdinInspector;
 
 namespace Banchou.FSM {
     public class CommandEvents : FSMBehaviour {
-        [SerializeField] private Part.Command[] _commands = null;
+        [SerializeField, DrawWithUnity] private Part.Command[] _commands = null;
         [SerializeField] private float _delay = 0f;
         [SerializeField] private bool _filter = false;
         [Inject] private Part.ICommandStream _commandStream = null;

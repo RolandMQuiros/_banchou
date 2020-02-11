@@ -1541,8 +1541,8 @@ MonoBehaviour:
     current loop until hit hits the designated normalized time.
 
 
-    That normalized
-    time also changes for blendtrees, depending on which animation is being used.'
+    That normalized time also changes for blendtrees, depending on which animation
+    is being used.'
 --- !u!1102 &-4095353757402429677
 AnimatorState:
   serializedVersion: 5
