@@ -10,7 +10,7 @@ namespace Banchou.Pawn.FSM {
         private int _attackHash;
         private int _stageHash;
 
-        private void Start() {
+        private void OnEnable() {
             _attackHash = Animator.StringToHash(_onAttack);
             _stageHash = Animator.StringToHash(_stageOut);
         }

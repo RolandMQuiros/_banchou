@@ -1,12 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using Zenject;
 
 namespace Banchou {
     public class HurtVolume : MonoBehaviour {
         public int BaseDamage;
-        public string PawnID { get; private set; }
-        public void Inject(string pawnID) {
-            PawnID = pawnID;
-        }
+        [Inject(Id = "PawnID")] public string PawnID { get; private set; }
     }
 }

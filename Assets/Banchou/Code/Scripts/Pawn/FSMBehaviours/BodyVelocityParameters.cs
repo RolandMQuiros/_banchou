@@ -17,16 +17,16 @@ namespace Banchou.FSM {
         }
 
         public override void OnStateUpdate(Animator stateMachine, AnimatorStateInfo stateInfo, int layerIndex) {
-            if (!string.IsNullOrEmpty(_xSpeed)) {
+            if (!string.IsNullOrWhiteSpace(_xSpeed)) {
                 stateMachine.SetFloat(_xSpeedHash, _body.velocity.x);
             }
 
-            if (!string.IsNullOrEmpty(_ySpeed)) {
+            if (!string.IsNullOrWhiteSpace(_ySpeed)) {
                 stateMachine.SetFloat(_ySpeedHash, _body.velocity.y);
             }
 
-            if (!string.IsNullOrEmpty(_ySpeed)) {
-                stateMachine.SetFloat(_ySpeedHash, _body.velocity.y);
+            if (!string.IsNullOrWhiteSpace(_zSpeed)) {
+                stateMachine.SetFloat(_zSpeedHash, _body.velocity.z);
             }
         }
     }

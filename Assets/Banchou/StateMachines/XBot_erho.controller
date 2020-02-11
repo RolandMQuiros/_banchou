@@ -20,7 +20,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.05
   m_TransitionOffset: 0
   m_ExitTime: 0.5945946
   m_HasExitTime: 0
@@ -140,9 +140,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 0.7
+  m_ExitTime: 0.4709924
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -768,9 +768,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 0.7
+  m_ExitTime: 0.25
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1541,8 +1541,8 @@ MonoBehaviour:
     current loop until hit hits the designated normalized time.
 
 
-    That normalized time also changes for blendtrees, depending on which animation
-    is being used.'
+    That normalized
+    time also changes for blendtrees, depending on which animation is being used.'
 --- !u!1102 &-4095353757402429677
 AnimatorState:
   serializedVersion: 5
@@ -3781,8 +3781,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 2cb15c04c7060714a99cfd29d97fc88a,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 4bf7a82929022ad4d9e0f32b5ab62f14, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -3835,7 +3834,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Crouch
-  m_Speed: 3
+  m_Speed: 5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6775938665960717376}
@@ -3979,22 +3978,22 @@ AnimatorStateMachine:
     - {fileID: -1420478526868845977}
     - {fileID: 4465528234084754942}
     - {fileID: 4348405956516266464}
-  - first: {fileID: 3284692907232856101}
+  - first: {fileID: -6593190220038298720}
     second:
-    - {fileID: -7868914936022772201}
+    - {fileID: 94368395407801475}
   - first: {fileID: -3517914797529691560}
     second:
     - {fileID: 5973533555387470996}
+  - first: {fileID: -1637710064679983902}
+    second:
+    - {fileID: 4135128274865384075}
   - first: {fileID: 1477917606005653540}
     second:
     - {fileID: 8786621535313874889}
     - {fileID: -6394099024806995088}
-  - first: {fileID: -1637710064679983902}
+  - first: {fileID: 3284692907232856101}
     second:
-    - {fileID: 4135128274865384075}
-  - first: {fileID: -6593190220038298720}
-    second:
-    - {fileID: 94368395407801475}
+    - {fileID: -7868914936022772201}
   m_StateMachineBehaviours:
   - {fileID: 7441089383948958211}
   - {fileID: -1339085210155768168}
@@ -4207,8 +4206,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 281059277e872794fb17326fa251d24e,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 3e86e93b4876eb04fbf86406c20dd05d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -5323,9 +5321,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 0.82
+  m_ExitTime: 0.81999993
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

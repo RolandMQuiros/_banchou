@@ -24,7 +24,7 @@ namespace Banchou.Pawn {
                             amount: hurt.BaseDamage
                         )
                     );
-                }).AddTo(this);
+                });
         }
     }
 }

@@ -3,12 +3,21 @@ using Zenject;
 
 namespace Banchou {
     public class InputMovement : FSMBehaviour {
-        [SerializeField] private float _movementSpeed = 8f;
-        [SerializeField] private bool _rotateToInput = true;
-        [SerializeField] private float _rotationSpeed = 10f;
-        [SerializeField] private float _flipDelay = 0f;
+        [SerializeField, Tooltip("How quickly, in units per second, the object moves along its motion vector")]
+        private float _movementSpeed = 8f;
+
+        [SerializeField, Tooltip("Whether or not the object will rotate towards its motion vector")]
+        private bool _rotateToInput = true;
+
+        [SerializeField, Tooltip("How quickly, in degrees per second, the Object will rotate to face its motion vector")]
+        private float _rotationSpeed = 10f;
+
+        [SerializeField, Tooltip("How long, in seconds, the Object will face a direction before it rotates towards its motion vector")]
+        private float _flipDelay = 0f;
+        
         [Header("Animation Parameters")]
-        [SerializeField] private string _movementSpeedOut = string.Empty;
+        [SerializeField, Tooltip("Animation parameter to write movement speed")]
+        private string _movementSpeedOut = string.Empty;
 
         [Inject] private Part.IMovementInput _input = null;
         [Inject] private Part.IMotor _motor = null;
@@ -16,6 +25,7 @@ namespace Banchou {
         [Inject] private Animator _animator = null;
         private int _speedOut;
 
+        // The object's final facing unit vector angle
         private Vector3 _faceDirection;
         private float _flipTimer = 0f;
 
@@ -34,7 +44,11 @@ namespace Banchou {
 
             if (_rotateToInput && _input.RotateToMovement) {
                 if (direction != Vector3.zero) {
-                    if (Vector3.Dot(direction, _faceDirection) < 0f && _flipTimer < _flipDelay) {
+                    // If the movement direction is different enough from the facing direction,
+                    // remain facing in the current direction for a short time. Allows the player to
+                    // more easily execute Pull Attacks
+                    var faceMotionDot = Vector3.Dot(direction, _faceDirection);
+                    if (faceMotionDot <= 0.01f && _flipTimer < _flipDelay) {
                         _flipTimer += Time.fixedDeltaTime;
                     } else {
                         _faceDirection = direction;
@@ -49,6 +63,7 @@ namespace Banchou {
                 );
             }
 
+            // Write to output variable
             if (!string.IsNullOrWhiteSpace(_movementSpeedOut)) {
                 var relativeDirection = Mathf.Sign(
                     Vector3.Dot(_faceDirection, _orientation.transform.forward)
