@@ -4,7 +4,7 @@ using Zenject;
 using Banchou.Pawn.State;
 
 namespace Banchou.Pawn {
-    public class PawnInstaller : MonoInstaller {
+    public class CombatantInstaller : MonoInstaller {
         public string PawnID { get; set; }
 
         public override void InstallBindings() {

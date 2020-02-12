@@ -18,12 +18,14 @@ namespace Banchou {
         [Header("Animation Parameters")]
         [SerializeField, Tooltip("Animation parameter to write movement speed")]
         private string _movementSpeedOut = string.Empty;
+        [SerializeField] private string _lateralVelocityOut = string.Empty;
+        [SerializeField] private string _distalVelocityOut = string.Empty;
 
         [Inject] private Part.IMovementInput _input = null;
         [Inject] private Part.IMotor _motor = null;
         [Inject] private Part.Orientation _orientation = null;
         [Inject] private Animator _animator = null;
-        private int _speedOut;
+        private int _speedOut, _lateralOut, _distalOut;
 
         // The object's final facing unit vector angle
         private Vector3 _faceDirection;
@@ -31,6 +33,8 @@ namespace Banchou {
 
         private void OnEnable() {
             _speedOut = Animator.StringToHash(_movementSpeedOut);
+            _lateralOut = Animator.StringToHash(_lateralVelocityOut);
+            _distalOut = Animator.StringToHash(_distalVelocityOut);
         }
 
         public override void OnStateEnter(Animator stateMachine, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -51,7 +55,7 @@ namespace Banchou {
                     if (faceMotionDot <= -0.01f && _flipTimer < _flipDelay) {
                         _flipTimer += Time.fixedDeltaTime;
                     } else {
-                        _faceDirection = direction;
+                        _faceDirection = direction.normalized;
                         _flipTimer = 0f;
                     }
                 }
@@ -65,10 +69,9 @@ namespace Banchou {
 
             // Write to output variable
             if (!string.IsNullOrWhiteSpace(_movementSpeedOut)) {
-                var relativeDirection = Mathf.Sign(
-                    Vector3.Dot(_faceDirection, _orientation.transform.forward)
-                );
-                _animator.SetFloat(_speedOut, velocity.magnitude * relativeDirection);
+                _animator.SetFloat(_speedOut, velocity.magnitude);
+                _animator.SetFloat(_lateralOut, Vector3.Dot(velocity, _orientation.transform.right));
+                _animator.SetFloat(_distalOut, Vector3.Dot(velocity, _orientation.transform.forward));
             }
         }
     }
