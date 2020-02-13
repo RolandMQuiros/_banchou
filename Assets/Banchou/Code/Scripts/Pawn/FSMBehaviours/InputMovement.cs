@@ -39,6 +39,7 @@ namespace Banchou {
 
         public override void OnStateEnter(Animator stateMachine, AnimatorStateInfo stateInfo, int layerIndex) {
             _faceDirection = _orientation.transform.forward;
+            _flipTimer = 0f;
         }
 
         public override void OnStateUpdate(Animator stateMachine, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -72,6 +73,14 @@ namespace Banchou {
                 _animator.SetFloat(_speedOut, velocity.magnitude);
                 _animator.SetFloat(_lateralOut, Vector3.Dot(velocity, _orientation.transform.right));
                 _animator.SetFloat(_distalOut, Vector3.Dot(velocity, _orientation.transform.forward));
+            }
+        }
+
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+            // Snap to the facing direction on state exit.
+            // Helps face the character in the intended direction when jumping mid-turn.
+            if (_rotateToInput && _input.RotateToMovement) {
+                _orientation.transform.rotation = Quaternion.LookRotation(_faceDirection.normalized);
             }
         }
     }
