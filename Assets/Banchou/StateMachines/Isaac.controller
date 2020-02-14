@@ -142,7 +142,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 0.125
+  m_ExitTime: 1
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -240,12 +240,12 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.033806957
   m_TransitionOffset: 0
-  m_ExitTime: 0.5
+  m_ExitTime: 0.2746879
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 1
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &-8518706733763883954
@@ -369,7 +369,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.1
   m_TransitionOffset: 0
-  m_ExitTime: 1
+  m_ExitTime: 0.75
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 1
@@ -723,12 +723,12 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.05
   m_TransitionOffset: 0
   m_ExitTime: 0.64705884
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!114 &-6826273790092873625
@@ -794,9 +794,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.05
+  m_TransitionDuration: 0.050000004
   m_TransitionOffset: 0
-  m_ExitTime: 0.125
+  m_ExitTime: 1
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1144,7 +1144,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.1
   m_TransitionOffset: 0
-  m_ExitTime: 1
+  m_ExitTime: 0.75
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 1
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3d78e897eaac24693b1714bb43630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 4
+  _movementSpeed: 3
   _rotateToInput: 0
   _rotationSpeed: 10
   _flipDelay: 0.1
@@ -1658,7 +1658,7 @@ AnimatorState:
   m_SpeedParameter: Speed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_TimeParameter: Speed
 --- !u!1109 &-3599924130769498769
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -1692,7 +1692,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 0.125
+  m_ExitTime: 5
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1833,7 +1833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3d78e897eaac24693b1714bb43630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 4
+  _movementSpeed: 3
   _rotateToInput: 0
   _rotationSpeed: 10
   _flipDelay: 0.1
@@ -2003,6 +2003,25 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
+--- !u!114 &-2396643738175386879
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3d78e897eaac24693b1714bb43630f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: 1
+  _rotateToInput: 0
+  _rotationSpeed: 0
+  _flipDelay: 0
+  _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!206 &-2180627446398467914
 BlendTree:
   m_ObjectHideFlags: 3
@@ -2362,8 +2381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 4
   _rotateToInput: 0
-  _rotationSpeed: 10
-  _flipDelay: 0.1
+  _rotationSpeed: 0
+  _flipDelay: 0
   _movementSpeedOut: 
   _lateralVelocityOut: 
   _distalVelocityOut: 
@@ -2922,7 +2941,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _commands: 01000000030000000500000007000000090000000b000000
-  _delay: 0.35
   _filter: 0
 --- !u!1109 &94368395407801475
 AnimatorTransition:
@@ -3016,8 +3034,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 4
   _rotateToInput: 0
-  _rotationSpeed: 10
-  _flipDelay: 0.1
+  _rotationSpeed: 0
+  _flipDelay: 0
   _movementSpeedOut: 
   _lateralVelocityOut: 
   _distalVelocityOut: 
@@ -3037,7 +3055,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.1
   m_TransitionOffset: 0
-  m_ExitTime: 1
+  m_ExitTime: 0.75
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 1
@@ -3194,7 +3212,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Light Attack 3
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8420378846393633732}
@@ -3230,7 +3248,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.64705884
   m_HasExitTime: 1
@@ -3434,7 +3452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3d78e897eaac24693b1714bb43630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 6
+  _movementSpeed: 5
   _rotateToInput: 1
   _rotationSpeed: 800
   _flipDelay: 0.25
@@ -3531,7 +3549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3d78e897eaac24693b1714bb43630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 4
+  _movementSpeed: 3
   _rotateToInput: 0
   _rotationSpeed: 10
   _flipDelay: 0.1
@@ -3555,12 +3573,12 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.10000001
   m_TransitionOffset: 0
-  m_ExitTime: 0.25
+  m_ExitTime: 0.22424512
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 1
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &1714303680766136035
@@ -3793,9 +3811,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.01
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 0.0000000018495284
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -4006,7 +4024,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Light Attack 1
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8545238587726911836}
@@ -4298,7 +4316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _commands: 
-  _delay: 0
   _filter: 1
 --- !u!1102 &3969918844040438929
 AnimatorState:
@@ -4433,7 +4450,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Light Attack 2
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1674488943706822365}
@@ -5216,7 +5233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _commands: 12000000
-  _delay: 0
   _filter: 0
 --- !u!1109 &7641976547422156514
 AnimatorTransition:
@@ -5280,12 +5296,12 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 0.056895
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &8072139527796805000
@@ -5372,7 +5388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _commands: 05000000
-  _delay: 0
   _filter: 0
 --- !u!1101 &8624307655897842045
 AnimatorStateTransition:
@@ -5533,6 +5548,7 @@ AnimatorState:
   - {fileID: 2766574100379803239}
   m_StateMachineBehaviours:
   - {fileID: 7594339148625617232}
+  - {fileID: -2396643738175386879}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

@@ -10,7 +10,6 @@ using Sirenix.OdinInspector;
 namespace Banchou.FSM {
     public class CommandEvents : FSMBehaviour {
         [SerializeField, DrawWithUnity] private Part.Command[] _commands = null;
-        [SerializeField] private float _delay = 0f;
         [SerializeField] private bool _filter = false;
         [Inject] private Part.ICommandStream _commandStream = null;
         private Dictionary<Part.Command, int> _lookup;
@@ -45,8 +44,7 @@ namespace Banchou.FSM {
                 _commandStream.Commands
                     .Subscribe(command => {
                         int hash;
-                        var currentStateInfo = stateMachine.GetCurrentAnimatorStateInfo(layerIndex);
-                        if (currentStateInfo.normalizedTime >= _delay && _lookup.TryGetValue(command, out hash)) {
+                        if (_lookup.TryGetValue(command, out hash)) {
                             stateMachine.SetTrigger(hash);
                         }
                     })

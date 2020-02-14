@@ -879,6 +879,8 @@ MonoBehaviour:
   _rotationSpeed: 100
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1109 &-6394099024806995088
 AnimatorTransition:
   m_ObjectHideFlags: 3
@@ -1236,6 +1238,8 @@ MonoBehaviour:
   _rotationSpeed: 600
   _flipDelay: 0
   _movementSpeedOut: Speed
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!206 &-4941710258690215042
 BlendTree:
   m_ObjectHideFlags: 3
@@ -1377,6 +1381,8 @@ MonoBehaviour:
   _rotationSpeed: 100
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1102 &-4383042695370181047
 AnimatorState:
   serializedVersion: 5
@@ -1603,6 +1609,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0.1
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1102 &-3636931979994425306
 AnimatorState:
   serializedVersion: 5
@@ -1871,6 +1879,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!114 &-2916278164725755143
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1984,6 +1994,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1101 &-1855035296381347146
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -2297,6 +2309,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0.1
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1101 &-1070424982780619313
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -2933,6 +2947,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0.1
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1101 &232860033521924612
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -3115,6 +3131,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0.1
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1102 &493539788694652544
 AnimatorState:
   serializedVersion: 5
@@ -3236,6 +3254,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0.1
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1109 &913562346700679988
 AnimatorTransition:
   m_ObjectHideFlags: 3
@@ -3344,6 +3364,8 @@ MonoBehaviour:
   _rotationSpeed: 800
   _flipDelay: 0.25
   _movementSpeedOut: Speed
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1107 &1477917606005653540
 AnimatorStateMachine:
   serializedVersion: 5
@@ -3426,6 +3448,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0.1
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1101 &1674488943706822365
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -3653,6 +3677,8 @@ MonoBehaviour:
   _rotationSpeed: 0
   _flipDelay: 0.1
   _movementSpeedOut: Speed
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!114 &3067477224610231147
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -3804,6 +3830,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1101 &3567284256420131806
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -3959,10 +3987,10 @@ AnimatorStateMachine:
     m_Position: {x: 590, y: 160, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -3517914797529691560}
-    m_Position: {x: 310, y: 350, z: 0}
+    m_Position: {x: 310, y: 370, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 1477917606005653540}
-    m_Position: {x: 310, y: 300, z: 0}
+    m_Position: {x: 310, y: 310, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -1637710064679983902}
     m_Position: {x: 590, y: 100, z: 0}
@@ -3973,27 +4001,27 @@ AnimatorStateMachine:
   m_EntryTransitions:
   - {fileID: -4635048351620742699}
   m_StateMachineTransitions:
+  - first: {fileID: -3517914797529691560}
+    second:
+    - {fileID: 5973533555387470996}
+  - first: {fileID: 1477917606005653540}
+    second:
+    - {fileID: 8786621535313874889}
+    - {fileID: -6394099024806995088}
   - first: {fileID: -8428430860054063862}
     second:
     - {fileID: -1420478526868845977}
     - {fileID: 4465528234084754942}
     - {fileID: 4348405956516266464}
-  - first: {fileID: -6593190220038298720}
-    second:
-    - {fileID: 94368395407801475}
-  - first: {fileID: -3517914797529691560}
-    second:
-    - {fileID: 5973533555387470996}
-  - first: {fileID: -1637710064679983902}
-    second:
-    - {fileID: 4135128274865384075}
-  - first: {fileID: 1477917606005653540}
-    second:
-    - {fileID: 8786621535313874889}
-    - {fileID: -6394099024806995088}
   - first: {fileID: 3284692907232856101}
     second:
     - {fileID: -7868914936022772201}
+  - first: {fileID: -1637710064679983902}
+    second:
+    - {fileID: 4135128274865384075}
+  - first: {fileID: -6593190220038298720}
+    second:
+    - {fileID: 94368395407801475}
   m_StateMachineBehaviours:
   - {fileID: 7441089383948958211}
   - {fileID: -1339085210155768168}
@@ -4367,6 +4395,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1102 &4873561944729259794
 AnimatorState:
   serializedVersion: 5
@@ -4425,6 +4455,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1101 &5346496090832638209
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -5075,6 +5107,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!114 &8449161669028738549
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5162,6 +5196,8 @@ MonoBehaviour:
   _rotationSpeed: 10
   _flipDelay: 0
   _movementSpeedOut: 
+  _lateralVelocityOut: 
+  _distalVelocityOut: 
 --- !u!1102 &8735891101923274282
 AnimatorState:
   serializedVersion: 5

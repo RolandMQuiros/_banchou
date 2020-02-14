@@ -15,7 +15,8 @@ namespace Banchou.Part {
         [SerializeField] private string _dodge = "Dodge";
 
         [Header("Parameters")]
-        [SerializeField] private float _tapThreshold = 0.1f;
+        [SerializeField] private float _attackTapThreshold = 0.25f;
+        [SerializeField] private float _jumpTapThreshold = 0.1f;
         [SerializeField] private float _tiltSpeedThreshold = 1f;
         //[SerializeField, Range(0f, 1f)] private float _pushThreshold = 0.7f;
         [SerializeField] private float _pullLag = 0.35f;
@@ -108,46 +109,39 @@ namespace Banchou.Part {
                     );
             }
         }
-            // this.FixedUpdateAsObservable()
-            //     .Select(_ => MovementDirection)
-            //     .WithLatestFrom(DirectionLag, (input, prevMovement) => Vector3.Dot(input, prevMovement))
-            //     .Pairwise()
-            //     .Where(pair => Mathf.Sign(pair.Current) == Mathf.Sign(pair.Current - pair.Previous))
-            //     .Select(pair => (Current: pair.Current, Speed: (pair.Current - pair.Previous) / Time.fixedUnscaledDeltaTime));
         
         // Emits the running time a button is held
-        private IObservable<float> ButtonHold(string button) {
-            var holdTime = 0f;
-            return this.FixedUpdateAsObservable()
-                .Select(_ => Input.GetButton(button) ? holdTime += Time.fixedUnscaledDeltaTime : holdTime = 0f);
-        }
+        private IObservable<float> ButtonHold(string button) =>
+            this.UpdateAsObservable()
+                .SkipWhile(_ => Input.GetButton(button)) // Omit until button is released
+                .Scan(0f, (holdTime, _) => Input.GetButton(button) ? holdTime + Time.unscaledDeltaTime : 0f);
         
-        // Emits when the button is held for less than `_tapThreshold` seconds
+        // Emits when the button is held for less than `tapThreshold` seconds
         // Used to trigger quick button taps
-        private IObservable<Unit> ButtonTap(string button) =>
+        private IObservable<Unit> ButtonTap(string button, float tapThreshold) =>
             ButtonHold(button)
                 .Pairwise()
-                .Where(pair => pair.Current == 0f && pair.Previous > 0f && pair.Previous <= _tapThreshold)
+                .Where(pair => pair.Current == 0f && pair.Previous > 0f && pair.Previous <= tapThreshold)
                 .Select(pair => Unit.Default);
         
-        // Emits when the button is held longer than `_tapThreshold` seconds
+        // Emits when the button is held longer than `tapThreshold` seconds
         // Marks the start of a button charge
-        private IObservable<Unit> ButtonChargeStart(string button) =>
+        private IObservable<Unit> ButtonChargeStart(string button, float tapThreshold) =>
             ButtonHold(button)
                 .Pairwise()
-                .Where(pair => pair.Current > _tapThreshold && pair.Previous > 0f && pair.Previous <= _tapThreshold)
+                .Where(pair => pair.Current > tapThreshold && pair.Previous > 0f && pair.Previous <= tapThreshold)
                 .Select(pair => Unit.Default);
 
         // Emits when the button is released after being held for some time longer than `_tapThreshold` seconds
         // Marks the end of a button charge
-        private IObservable<Unit> ButtonChargeEnd(string button) =>
+        private IObservable<Unit> ButtonChargeEnd(string button, float tapThreshold) =>
             ButtonHold(button)
                 .Pairwise()
-                .Where(pair => pair.Current == 0f && pair.Previous > _tapThreshold)
+                .Where(pair => pair.Current == 0f && pair.Previous > tapThreshold)
                 .Select(pair => Unit.Default);
         
         private IObservable<Command> TiltTap(string button, Command forward, Command neutral, Command back) =>
-            ButtonTap(button)
+            ButtonTap(button, _attackTapThreshold)
                 .WithLatestFrom(
                     Tilt,
                     (_, tilt) => {
@@ -159,7 +153,7 @@ namespace Banchou.Part {
                 );
 
         private IObservable<Command> TiltCharge(string button, Command forward, Command neutral, Command back) =>
-            ButtonChargeStart(button)
+            ButtonChargeStart(button, _attackTapThreshold)
                 .WithLatestFrom(
                     Tilt,
                     (holdTime, tilt) => {
@@ -185,11 +179,12 @@ namespace Banchou.Part {
             _heavyAttack, Command.PushHeavyCharge, Command.NeutralHeavyCharge, Command.PullHeavyCharge
         );
         
-        private IObservable<Command> LightChargeRelease => ButtonChargeEnd(_lightAttack).Select(_ => Command.LightChargeRelease);
-        private IObservable<Command> HeavyChargeRelease => ButtonChargeEnd(_heavyAttack).Select(_ => Command.HeavyChargeRelease);
+        private IObservable<Command> LightChargeRelease => ButtonChargeEnd(_lightAttack, _attackTapThreshold).Select(_ => Command.LightChargeRelease);
+        private IObservable<Command> HeavyChargeRelease => ButtonChargeEnd(_heavyAttack, _attackTapThreshold).Select(_ => Command.HeavyChargeRelease);
+
+        private IObservable<Command> Jump => ButtonChargeStart(_jump, _jumpTapThreshold).Select(_ => Command.Jump);
         
-        private IObservable<Command> Jump => ButtonChargeStart(_jump).Select(_ => Command.Jump);
-        private IObservable<Command> Hop => ButtonTap(_jump).Select(_ => Command.Hop);
+        private IObservable<Command> Hop => ButtonTap(_jump, _jumpTapThreshold).Select(_ => Command.Hop);
         
         private IObservable<Command> Dodge =>
             this.FixedUpdateAsObservable()

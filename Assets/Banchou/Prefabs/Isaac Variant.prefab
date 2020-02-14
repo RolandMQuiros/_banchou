@@ -194,9 +194,9 @@ MonoBehaviour:
   _holdDirection: LockOn
   _jump: Jump
   _dodge: Fire3
-  _tapThreshold: 0.1
-  _tiltSpeedThreshold: 1
-  _pullLag: 0.35
+  _tapThreshold: 0.25
+  _tiltSpeedThreshold: 5
+  _pullLag: 0.05
   _camera: {fileID: 0}
   _orientation: {fileID: 1896936964921387094}
   _debugMovement: {x: 0, y: 0}
