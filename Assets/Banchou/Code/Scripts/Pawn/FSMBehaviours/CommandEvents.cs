@@ -15,10 +15,7 @@ namespace Banchou.FSM {
         private Dictionary<Part.Command, int> _lookup;
 
         [Inject]
-        public void Attach(
-            Animator stateMachine,
-            Part.ICommandStream commandStream
-        ) {
+        public void Attach(Animator stateMachine) {
             IEnumerable<Part.Command> commands;
             if (_filter) {
                 commands = Enum.GetValues(typeof(Part.Command))

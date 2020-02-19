@@ -192,7 +192,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19548
+  m_Name: pb_Mesh19552
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3069,6 +3069,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Isaac
       objectReference: {fileID: 0}
+    - target: {fileID: 1896936964924733680, guid: 9fdb05ab9a298d14eb30c6ac7b9b1d5b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f52931e880d13d42a83eebdc24fbae1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fdb05ab9a298d14eb30c6ac7b9b1d5b, type: 3}
 --- !u!4 &7161004291558518198 stripped

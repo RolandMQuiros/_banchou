@@ -90,25 +90,18 @@ namespace Banchou.Part {
         //   1. Hit an extremity. i.e., some axis value greater than `_tiltMagnitudeThreshold`
         //   2. Do so faster than `_tiltSpeed`
         // To capture quick stick tilting motions
-        private IObservable<(float Current, float Speed)> Tilt {
-            get {
-                var movement = this.FixedUpdateAsObservable()
-                    .Select(_ => MovementDirection);
-                var stickOff = movement
-                    .Where(move => move == Vector3.zero)
-                    .Select(_ => Time.fixedUnscaledTime);
-                return movement
-                    //.WithLatestFrom(DirectionLag, (move, prevDirection) => Vector3.Dot(move, prevDirection))
-                    .Select(move => Vector3.Dot(move, _orientation.forward))
-                    .WithLatestFrom(
-                        stickOff,
-                        (current, offTime) => (
-                            Current: current,
-                            Speed: (Time.fixedUnscaledTime - offTime) > 0f ? current / (Time.fixedUnscaledTime - offTime) : 0f
-                        )
-                    );
-            }
-        }
+        public IObservable<(float Current, float Speed)> Tilt => 
+            this.FixedUpdateAsObservable()
+                .Select(_ => Vector3.Dot(MovementDirection, _orientation.forward))
+                .Where(move => move == 0f || move >= 0.9f || move <= 0.9f)
+                .Scan((Current: 0f, OffTime: 0f), (prev, move) => (
+                    Current: move,
+                    OffTime: move == 0f ? Time.fixedUnscaledTime : prev.OffTime
+                ))
+                .Select(tuple => (
+                    Current: tuple.Current,
+                    Speed: Time.fixedUnscaledTime - tuple.OffTime > 0f ? tuple.Current / (Time.fixedUnscaledTime - tuple.OffTime) : 0f
+                ));
         
         // Emits the running time a button is held
         private IObservable<float> ButtonHold(string button) =>
@@ -145,10 +138,9 @@ namespace Banchou.Part {
                 .WithLatestFrom(
                     Tilt,
                     (_, tilt) => {
-                        if      (tilt.Current > 0f && tilt.Speed >      _tiltSpeedThreshold) { return forward; }
-                        else if (tilt.Current < 0f && tilt.Speed < 1f - _tiltSpeedThreshold) { return back; }
-                        else if (tilt.Current == 0f) { return neutral; }
-                        return Command.None;
+                        if      (tilt.Current > 0f && tilt.Speed >  _tiltSpeedThreshold) { return forward; }
+                        else if (tilt.Current < 0f && tilt.Speed < -_tiltSpeedThreshold) { return back; }
+                        return neutral;
                     }
                 );
 
@@ -157,10 +149,9 @@ namespace Banchou.Part {
                 .WithLatestFrom(
                     Tilt,
                     (holdTime, tilt) => {
-                        if      (tilt.Current > 0f && tilt.Speed >      _tiltSpeedThreshold) { return forward; }
-                        else if (tilt.Current < 0f && tilt.Speed < 1f - _tiltSpeedThreshold) { return back; }
-                        else if (tilt.Current == 0f) { return neutral; }
-                        return Command.None;
+                        if      (tilt.Current > 0f && tilt.Speed >  _tiltSpeedThreshold) { return forward; }
+                        else if (tilt.Current < 0f && tilt.Speed < -_tiltSpeedThreshold) { return back; }
+                        return neutral;
                     }
                 );
         #endregion
