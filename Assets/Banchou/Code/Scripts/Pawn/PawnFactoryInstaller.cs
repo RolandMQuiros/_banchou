@@ -1,12 +1,33 @@
 using System;
 using System.Linq;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UniRx;
 using Zenject;
+
+using Banchou.State;
 
 namespace Banchou.Pawn {
     public class PawnFactoryInstaller : MonoInstaller {
         [SerializeField] private PawnCatalog _catalog = null;
+
+        [Inject]
+        public void ConnectToStore(
+            DiContainer container,
+            IObservable<GameState> observeState,
+            Dispatcher dispatch
+        ) {
+            var pawnChanges = observeState
+                .Select(state => state.Battle?.Pawns)
+                .DistinctUntilChanged()
+                .Pairwise();
+                
+            pawnChanges
+                .Select(pair => pair.Current.Except(pair.Previous))
+                .Subscribe(toAdd => {
+                    
+                });
+        }
 
         public override void InstallBindings() {
             var prefabs = _catalog.Prefabs;
