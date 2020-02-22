@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5086344230131226025}
   - component: {fileID: 5086344230131226071}
   - component: {fileID: 1811610157}
-  - component: {fileID: 2048676374545760436}
   m_Layer: 0
   m_Name: Erho
   m_TagString: Untagged
@@ -113,23 +112,6 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
---- !u!114 &2048676374545760436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5086344230131226024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c54920b40d1fa0c478ca95f5aa0272e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _body: {fileID: 5086344230131226026}
-  _orientation: {fileID: 282855886067276870}
-  _camera: {fileID: 0}
-  _motor: {fileID: 5086344230131226025}
-  _animator: {fileID: 7883239091188248892}
 --- !u!1001 &5086344228249974620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,11 +119,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5086344230131226070}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
+    - target: {fileID: -6057140222963153312, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
         type: 3}
-      propertyPath: m_Name
-      value: xbot
-      objectReference: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 908da4bbb385f9c44bdaf463d48d35ad, type: 2}
     - target: {fileID: -4216859302048453862, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -197,22 +179,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
+    - target: {fileID: -927199367670048503, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
         type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 908da4bbb385f9c44bdaf463d48d35ad, type: 2}
+      propertyPath: m_Name
+      value: xbot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 301f36d01554a2b4b9a1bfb53302a9ca, type: 3}
 --- !u!4 &282855886067276870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
-    type: 3}
-  m_PrefabInstance: {fileID: 5086344228249974620}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7883239091188248892 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
     type: 3}
   m_PrefabInstance: {fileID: 5086344228249974620}
   m_PrefabAsset: {fileID: 0}

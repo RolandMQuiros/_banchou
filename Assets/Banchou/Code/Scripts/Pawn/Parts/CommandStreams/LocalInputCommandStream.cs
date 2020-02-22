@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem; 
 using UniRx;
 using UniRx.Triggers;
 
@@ -181,15 +182,23 @@ namespace Banchou.Part {
             this.FixedUpdateAsObservable()
                 .Where(_ => Input.GetButtonDown(_dodge))
                 .Select(_ => Command.Dodge);
-        
-        //private IObservable<Command> Dash =>
             
         #endregion
         
         private Vector3 _lastDirection;
+
         private void Start() {
             DirectionLag.Subscribe(d => _lastDirection = d);
             Tilt.Subscribe(tilt => _debugSpeed = (float)Math.Round((double)tilt.Speed, 1));
+
+            // var playerInput = GetComponent<PlayerInput>();
+            // Observable.FromEvent<InputAction.CallbackContext>(
+            //     handler => playerInput.onActionTriggered += handler,
+            //     handler => playerInput.onActionTriggered -= handler
+            // ).Subscribe(context => {
+                
+            // });
+            
         }
 
         private void OnDrawGizmos() {
