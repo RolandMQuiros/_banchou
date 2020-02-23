@@ -2,9 +2,9 @@
 
 using Banchou.Pawn;
 
-namespace Banchou.Combat {
-    internal static class BattleReducer {
-        public static BattleState Reduce(in BattleState prev, in object action) {
+namespace Banchou.Board {
+    internal static class BoardReducer {
+        public static BoardState Reduce(in BoardState prev, in object action) {
             var pawnAction = action as Pawn.StateAction.PawnAction;
             if (pawnAction != null) {
                 PawnState pawn;
@@ -18,7 +18,7 @@ namespace Banchou.Combat {
                             return prev;
                         }
                     }
-                    return new BattleState(
+                    return new BoardState(
                         prev,
                         pawns: new Dictionary<string, PawnState>(prev.Pawns) {
                             [pawnAction.PawnID] = PawnReducer.Reduce(pawn, action)

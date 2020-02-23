@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Banchou.Pawn {
     public static class PawnSelectors {
         public static PawnState GetPawn(this GameState state, string id) {
-            var pawns = state.Battle?.Pawns;
+            var pawns = state.Board?.Pawns;
             PawnState pawnState;
             if (pawns.TryGetValue(id, out pawnState)) {
                 return pawnState;
@@ -13,7 +13,7 @@ namespace Banchou.Pawn {
         }
 
         public static IEnumerable<PawnState> GetPawns(this GameState state) {
-            return state.Battle?.Pawns?.Values;
+            return state.Board?.Pawns?.Values;
         }
     }
 }

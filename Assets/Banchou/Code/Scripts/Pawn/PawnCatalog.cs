@@ -8,11 +8,13 @@ using Sirenix.Utilities.Editor;
 namespace Banchou.Pawn {
     [CreateAssetMenu(fileName = "Pawn Catalog", menuName = "Banchou/Pawn Catalog")]
     public class PawnCatalog : SerializedScriptableObject {
+        
         public struct CatalogTuple {
             [Required] public string Key;
             [AssetsOnly] public GameObject Value;
         }
         
+        [InfoBox("A list of Prefabs keyed by string. Used to create Pawn GameObjects by that key.")]
         [TableMatrix(
             SquareCells = true,
             DrawElementMethod = "DrawCell",
@@ -22,9 +24,11 @@ namespace Banchou.Pawn {
             IsReadOnly = false
         )]
         [SerializeField]
+        // There's no architectural reason for this to be a 2d array besides it looking rad
         private CatalogTuple[,] _catalog = new CatalogTuple[8, 8];
         public Dictionary<string, GameObject> Prefabs =>
             _catalog.Cast<CatalogTuple>()
+                .Where(p => !(string.IsNullOrEmpty(p.Key) || p.Value == null) )
                 .ToDictionary(p => p.Key, p => p.Value);
         
         #if UNITY_EDITOR

@@ -1,4 +1,4 @@
-﻿using Banchou.Combat;
+﻿using Banchou.Board;
 
 namespace Banchou {
     public static class GameStateReducer {
@@ -9,7 +9,7 @@ namespace Banchou {
             }
 
             return new GameState(
-                battle: BattleReducer.Reduce(prev?.Battle, action)
+                board: BoardReducer.Reduce(prev?.Board, action)
             );
         }
     }
