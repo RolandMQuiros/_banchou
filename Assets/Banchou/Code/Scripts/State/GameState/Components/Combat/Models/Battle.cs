@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Banchou.Pawn.State;
+using Banchou.Pawn;
 
-namespace Banchou.Combat.State {
+namespace Banchou {
     public class BattleState {
         public Dictionary<string, PawnState> Pawns = new Dictionary<string, PawnState>();
 

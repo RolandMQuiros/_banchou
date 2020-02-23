@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace Banchou.Pawn.State {
-    namespace Action {
+namespace Banchou.Pawn {
+    namespace StateAction {
         public class PawnAction {
             public string PawnID;
         }
@@ -27,14 +27,14 @@ namespace Banchou.Pawn.State {
     }
 
     public class PawnActions {
-        public Action.DamagePawn DamagePawn(
+        public StateAction.DamagePawn DamagePawn(
             string pawnID,
             string from = default,
             int amount = 0,
             Vector3 push = default
-        ) => new Action.DamagePawn { PawnID = pawnID, From = from, Amount = amount, Push = push};
-        public Action.PawnPushed PawnPushed(string pawnID) => new Action.PawnPushed { PawnID = pawnID };
-        public Action.HealPawn HealPawn(string pawnID, int amount) => new Action.HealPawn {
+        ) => new StateAction.DamagePawn { PawnID = pawnID, From = from, Amount = amount, Push = push};
+        public StateAction.PawnPushed PawnPushed(string pawnID) => new StateAction.PawnPushed { PawnID = pawnID };
+        public StateAction.HealPawn HealPawn(string pawnID, int amount) => new StateAction.HealPawn {
             PawnID = pawnID,
             Amount = amount
         };

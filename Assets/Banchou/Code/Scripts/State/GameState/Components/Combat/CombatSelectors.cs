@@ -1,5 +1,4 @@
-using Banchou.State;
-using Banchou.Pawn.State;
+using Banchou.Pawn;
 
 namespace Banchou.Combat.State {
     public static class CombatSelectors {

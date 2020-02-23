@@ -1,9 +1,9 @@
-﻿using Banchou.Combat.State;
+﻿using Banchou.Combat;
 
-namespace Banchou.State {
+namespace Banchou {
     public static class GameStateReducer {
         public static GameState Reduce(in GameState prev, in object action) {
-            var hydrate = action as Action.HydrateGameState;
+            var hydrate = action as StateAction.HydrateGameState;
             if (hydrate != null) {
                 return new GameState(hydrate.GameState);
             }

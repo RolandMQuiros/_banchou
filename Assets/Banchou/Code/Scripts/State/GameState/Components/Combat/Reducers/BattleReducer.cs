@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 
-using Banchou.Pawn.State;
-using Banchou.Pawn.State.Action;
+using Banchou.Pawn;
 
-namespace Banchou.Combat.State {
+namespace Banchou.Combat {
     internal static class BattleReducer {
         public static BattleState Reduce(in BattleState prev, in object action) {
-            var pawnAction = action as PawnAction;
+            var pawnAction = action as Pawn.StateAction.PawnAction;
             if (pawnAction != null) {
                 PawnState pawn;
                 if (prev.Pawns.TryGetValue(pawnAction.PawnID, out pawn)) {
                     // Check for team damage
-                    var damage = action as DamagePawn;
+                    var damage = action as Pawn.StateAction.DamagePawn;
                     if (damage != null) {
                         var other = prev.Pawns.Get(damage?.From);
                         // TODO?: Friendly fire

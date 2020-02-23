@@ -7,8 +7,6 @@ using UnityEngine;
 using Redux;
 using Redux.Reactive;
 
-using Banchou.State;
-
 namespace Banchou {
     public class StateContext : MonoBehaviour {
         [SerializeField] private TextAsset _initialState = null;

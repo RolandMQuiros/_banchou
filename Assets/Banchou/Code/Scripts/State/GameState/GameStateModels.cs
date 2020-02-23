@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using Sirenix.OdinInspector;
 
-using Banchou.Combat.State;
 
-namespace Banchou.State {
+namespace Banchou {
     [CreateAssetMenu(menuName = "Banchou/Game State")]
     public class GameState : SerializedScriptableObject {
         public BattleState Battle = new BattleState();

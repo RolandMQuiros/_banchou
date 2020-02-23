@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Banchou.State;
 
 namespace Banchou {
     public interface IStoreConnector {

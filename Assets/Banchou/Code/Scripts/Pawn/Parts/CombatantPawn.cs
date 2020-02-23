@@ -3,8 +3,7 @@ using UnityEngine;
 using UniRx;
 using Zenject;
 
-using Banchou.State;
-using Banchou.Combat.State;
+using Banchou.Pawn;
 
 namespace Banchou.Part {
     /// <summary>

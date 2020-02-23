@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Banchou.Pawn.State {
+namespace Banchou.Pawn {
     public static class PawnReducer {
         public static PawnState Reduce(in PawnState prev, in object action) =>
             ApplyDamage(prev, action) ??
@@ -9,7 +9,7 @@ namespace Banchou.Pawn.State {
             prev;
 
         private static PawnState ApplyDamage(in PawnState prev, in object action) {
-            var heal = action as Action.HealPawn;
+            var heal = action as StateAction.HealPawn;
             if (heal != null) {
                 return new PawnState(
                     prev,
@@ -17,7 +17,7 @@ namespace Banchou.Pawn.State {
                 );
             }
 
-            var damage = action as Action.DamagePawn;
+            var damage = action as StateAction.DamagePawn;
             if (damage != null) {
                 return new PawnState(
                     prev,
@@ -26,7 +26,7 @@ namespace Banchou.Pawn.State {
                 );
             }
 
-            var pushed = action as Action.PawnPushed;
+            var pushed = action as StateAction.PawnPushed;
             if (pushed != null) {
                 return new PawnState(
                     prev,
@@ -38,7 +38,7 @@ namespace Banchou.Pawn.State {
         }
 
         private static PawnState ApplyCommands(in PawnState prev, in object action) {
-            var push = action as Action.PushPawnCommand;
+            var push = action as StateAction.PushPawnCommand;
             if (push != null) {
                 return new PawnState(
                     prev,
@@ -46,7 +46,7 @@ namespace Banchou.Pawn.State {
                 );
             }
 
-            var pop = action as Action.PopPawnCommand;
+            var pop = action as StateAction.PopPawnCommand;
             if (pop != null) {
                 return new PawnState(
                     prev,
@@ -56,7 +56,7 @@ namespace Banchou.Pawn.State {
                 );
             }
 
-            var clear = action as Action.ClearPawnCommands;
+            var clear = action as StateAction.ClearPawnCommands;
             if (clear != null) {
                 return new PawnState(
                     prev,

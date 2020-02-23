@@ -3,8 +3,6 @@ using Zenject;
 using UniRx;
 using UniRx.Triggers;
 
-using Banchou.Pawn.State;
-
 namespace Banchou.Pawn {
     public class HitVolume : MonoBehaviour {
         [Inject]

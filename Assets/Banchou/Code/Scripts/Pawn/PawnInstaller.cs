@@ -1,10 +1,6 @@
 using System;
-using UnityEngine;
 using UniRx;
 using Zenject;
-
-using Banchou.State;
-using Banchou.Pawn.State;
 
 namespace Banchou.Pawn {
     public class PawnInstaller : MonoInstaller {

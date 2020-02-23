@@ -8,7 +8,7 @@ using UniRx;
 using Sirenix.OdinInspector;
 using Zenject;
 
-using Banchou.State;
+using Banchou;
 
 namespace Banchou.Middleware {
     public class StateLogger : MonoBehaviour, IMiddleware<GameState> {
@@ -34,7 +34,7 @@ namespace Banchou.Middleware {
                     var logIndex = _activeLog;
                     _history.Add(new Log(
                         () => {
-                            next(new State.Action.HydrateGameState {
+                            next(new StateAction.HydrateGameState {
                             GameState = nextState
                             });
                             _activeLog = logIndex;

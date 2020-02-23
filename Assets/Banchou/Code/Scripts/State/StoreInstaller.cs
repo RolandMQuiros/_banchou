@@ -7,8 +7,6 @@ using Sirenix.OdinInspector;
 using Redux;
 using Redux.Reactive;
 
-using Banchou.State;
-
 namespace Banchou {
     public delegate GameState GetState();
     public delegate object Dispatcher(object action);

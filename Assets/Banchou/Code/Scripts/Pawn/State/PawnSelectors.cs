@@ -1,9 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
-using Banchou.State;
-using Banchou.Pawn.State;
 
 namespace Banchou.Pawn {
     public static class PawnSelectors {
@@ -14,6 +10,10 @@ namespace Banchou.Pawn {
                 return pawnState;
             }
             return null;
+        }
+
+        public static IEnumerable<PawnState> GetPawns(this GameState state) {
+            return state.Battle?.Pawns?.Values;
         }
     }
 }
