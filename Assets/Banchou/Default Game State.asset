@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 583580869a51c7d4d994c76a1262e590, type: 3}
-  m_Name: Default GameState
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 0}
+  m_Name: Default Game State
+  m_EditorClassIdentifier: Assembly-CSharp:Banchou:GameStateInstance
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -21,16 +21,19 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: Battle
+    - Name: GameState
       Entry: 7
-      Data: 0|Banchou.State.Battle, Assembly-CSharp
+      Data: 0|Banchou.GameState, Assembly-CSharp
+    - Name: Board
+      Entry: 7
+      Data: 1|Banchou.Board.BoardState, Assembly-CSharp
     - Name: Pawns
       Entry: 7
-      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Banchou.State.Pawn,
+      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Banchou.Pawn.PawnState,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
     - Name: 
       Entry: 8
@@ -40,6 +43,9 @@ MonoBehaviour:
       Data: 0
     - Name: 
       Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8

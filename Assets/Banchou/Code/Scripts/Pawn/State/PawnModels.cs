@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,25 +8,26 @@ namespace Banchou.Pawn {
         public interface IQueuedCommand { }
         public string ID;
         public string PrefabKey;
+        public string DisplayName;
         public int Team;
         public int Health;
+        public Vector3 InitialPosition;
         public Vector3 Push;
         public IEnumerable<IQueuedCommand> Commands = Enumerable.Empty<IQueuedCommand>();
-        public PawnState(
-            in PawnState prev = null,
-            string id = null,
-            string prefabKey = null,
-            int? team = null,
-            int? health = null,
-            Vector3? push = null,
-            IEnumerable<IQueuedCommand> commands = null
-        ) {
-            ID = id ?? prev?.ID ?? ID;
-            PrefabKey = prefabKey ?? prev?.PrefabKey ?? PrefabKey;
-            Team = team ?? prev?.Team ?? 0;
-            Health = health ?? prev?.Health ?? 0;
-            Push = push ?? prev?.Push ?? Vector3.zero;
-            Commands = commands ?? prev?.Commands ?? Enumerable.Empty<IQueuedCommand>();
+        public DateTime Created;
+        public DateTime Updated;
+        public PawnState() { }
+        public PawnState(in PawnState prev) {
+            ID = prev?.ID ?? string.Empty;
+            PrefabKey = prev?.PrefabKey ?? string.Empty;
+            DisplayName = prev?.DisplayName ?? string.Empty;
+            Team = prev?.Team ?? 0;
+            Health = prev?.Health ?? 0;
+            InitialPosition = prev?.InitialPosition ?? Vector3.zero;
+            Push = prev?.Push ?? Vector3.zero;
+            Commands = prev?.Commands ?? Enumerable.Empty<IQueuedCommand>();
+            Created = prev?.Created ?? DateTime.UtcNow;
+            Updated = DateTime.Now;
         }
     }
 }

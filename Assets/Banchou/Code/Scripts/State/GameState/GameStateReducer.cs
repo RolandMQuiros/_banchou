@@ -8,9 +8,9 @@ namespace Banchou {
                 return new GameState(hydrate.GameState);
             }
 
-            return new GameState(
-                board: BoardReducer.Reduce(prev?.Board, action)
-            );
+            return new GameState(prev) {
+                Board = BoardReducer.Reduce(prev?.Board, action)
+            };
         }
     }
 }

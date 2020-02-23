@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 63391346836303027}
   - component: {fileID: 8857480406442733914}
   - component: {fileID: -6738593301172568491}
+  - component: {fileID: -233788178627377728}
   - component: {fileID: 6914832182576957624}
   m_Layer: 0
   m_Name: ProjectContext
@@ -74,7 +75,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f03727f764368a4c981569f268635f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultState: {fileID: 11400000, guid: 9dee9de3f3cc3a949b86624865daa2af, type: 2}
+  _defaultState: {fileID: 11400000, guid: 415cb8a0198b15c4abfbd052fb3afa68, type: 2}
+--- !u!114 &-233788178627377728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116194332611143767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51f8810ebbf596499eda85b43794108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: CurrentState
+      Entry: 6
+      Data: 
 --- !u!114 &6914832182576957624
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,11 +34,13 @@ namespace Banchou.Pawn {
                 if (_instances.TryGetValue(pawnState.ID, out existing)) {
                     throw new Exception($"Cannot spawn Pawn \"{pawnState.ID}\", a GameObject \"{existing.name}\" is already attached");
                 }
-                _instances[pawnState.ID] = createPawn(
+                var instance = _instances[pawnState.ID] = createPawn(
                     pawnState.ID,
                     pawnState.PrefabKey,
+                    position: pawnState.InitialPosition,
                     parent: transform
                 ).gameObject;
+                instance.name = pawnState.DisplayName;
             }
 
             void DestroyPawn(PawnState pawnState) {

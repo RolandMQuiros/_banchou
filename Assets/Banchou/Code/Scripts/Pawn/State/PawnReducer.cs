@@ -11,27 +11,24 @@ namespace Banchou.Pawn {
         private static PawnState ApplyDamage(in PawnState prev, in object action) {
             var heal = action as StateAction.HealPawn;
             if (heal != null) {
-                return new PawnState(
-                    prev,
-                    health: prev.Health + heal.Amount
-                );
+                return new PawnState(prev) {
+                    Health = prev.Health + heal.Amount
+                };
             }
 
             var damage = action as StateAction.DamagePawn;
             if (damage != null) {
-                return new PawnState(
-                    prev,
-                    health: prev.Health - damage.Amount,
-                    push: damage.Push
-                );
+                return new PawnState(prev) {
+                    Health = prev.Health - damage.Amount,
+                    Push = damage.Push
+                };
             }
 
             var pushed = action as StateAction.PawnPushed;
             if (pushed != null) {
-                return new PawnState(
-                    prev,
-                    push: Vector3.zero
-                );
+                return new PawnState(prev) {
+                    Push = Vector3.zero
+                };
             }
             
             return null;
@@ -40,28 +37,26 @@ namespace Banchou.Pawn {
         private static PawnState ApplyCommands(in PawnState prev, in object action) {
             var push = action as StateAction.PushPawnCommand;
             if (push != null) {
-                return new PawnState(
-                    prev,
-                    commands: prev.Commands.Append(push.Command)
-                );
+                return new PawnState(prev) {
+                    Commands = prev.Commands.Append(push.Command)
+                };
             }
 
             var pop = action as StateAction.PopPawnCommand;
             if (pop != null) {
-                return new PawnState(
-                    prev,
-                    commands: prev.Commands.Reverse()
-                                           .Skip(1)
-                                           .Reverse()
-                );
+                return new PawnState(prev) {
+                    Commands = prev.Commands
+                        .Reverse()
+                        .Skip(1)
+                        .Reverse()
+                };
             }
 
             var clear = action as StateAction.ClearPawnCommands;
             if (clear != null) {
-                return new PawnState(
-                    prev,
-                    commands: Enumerable.Empty<PawnState.IQueuedCommand>()
-                );
+                return new PawnState(prev) {
+                    Commands = Enumerable.Empty<PawnState.IQueuedCommand>()
+                };
             }
 
             return null;

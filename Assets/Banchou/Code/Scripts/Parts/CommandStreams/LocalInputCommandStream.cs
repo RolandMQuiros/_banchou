@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem; 
 using UniRx;
 using UniRx.Triggers;
+using Zenject;
 
 namespace Banchou.Part {
     public class LocalInputCommandStream : MonoBehaviour, ICommandStream, IMovementInput {
@@ -24,7 +25,7 @@ namespace Banchou.Part {
 
         [Header("References")]
         [SerializeField] private Transform _camera = null;
-        [SerializeField] private Transform _orientation = null;
+        [Inject] private Part.Orientation _orientation = null;
 
         [Header("Debug")]
         [SerializeField] private Vector2 _debugMovement;
@@ -83,8 +84,8 @@ namespace Banchou.Part {
 
         // Projects the stick directions into the world based on the camera's perspective
         private Vector3 ViewAxis(Vector2 controlAxes) =>
-            Vector3.ProjectOnPlane(_camera.right, _orientation.up).normalized * controlAxes.x +
-            Vector3.ProjectOnPlane(_camera.forward, _orientation.up).normalized * controlAxes.y;
+            Vector3.ProjectOnPlane(_camera.right, _orientation.transform.up).normalized * controlAxes.x +
+            Vector3.ProjectOnPlane(_camera.forward, _orientation.transform.up).normalized * controlAxes.y;
         
         #region Input Gestures
         // Capture stick movements that...
@@ -93,7 +94,7 @@ namespace Banchou.Part {
         // To capture quick stick tilting motions
         public IObservable<(float Current, float Speed)> Tilt => 
             this.FixedUpdateAsObservable()
-                .Select(_ => Vector3.Dot(MovementDirection, _orientation.forward))
+                .Select(_ => Vector3.Dot(MovementDirection, _orientation.transform.forward))
                 .Where(move => move == 0f || move >= 0.9f || move <= 0.9f)
                 .Scan((Current: 0f, OffTime: 0f), (prev, move) => (
                     Current: move,
@@ -191,6 +192,7 @@ namespace Banchou.Part {
             DirectionLag.Subscribe(d => _lastDirection = d);
             Tilt.Subscribe(tilt => _debugSpeed = (float)Math.Round((double)tilt.Speed, 1));
 
+            _camera = Camera.main?.transform;
             // var playerInput = GetComponent<PlayerInput>();
             // Observable.FromEvent<InputAction.CallbackContext>(
             //     handler => playerInput.onActionTriggered += handler,

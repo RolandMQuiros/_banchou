@@ -4,6 +4,8 @@ namespace Banchou.Pawn {
     namespace StateAction {
         public class PawnAction {
             public string PawnID;
+            public Vector3? LastPosition;
+            public double? LastPositionTime;
         }
 
         public class DamagePawn : PawnAction {
