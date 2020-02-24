@@ -3,7 +3,7 @@ using UnityEngine;
 using UniRx;
 using Zenject;
 
-using Banchou.Pawn;
+using Banchou.Combatant;
 
 namespace Banchou.Part {
     /// <summary>
@@ -26,7 +26,7 @@ namespace Banchou.Part {
             var stateMachine = GetComponent<Animator>();
             
             var observePawn = observeState
-                .Select(state => state.GetPawn(PawnID))
+                .Select(state => state.GetCombatant(PawnID))
                 .Distinct();
             
             // Handle health changes

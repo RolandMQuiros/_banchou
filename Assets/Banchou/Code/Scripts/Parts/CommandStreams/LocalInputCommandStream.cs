@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.InputSystem; 
 using UniRx;
 using UniRx.Triggers;
 using Zenject;
+
+using Banchou.Combatant;
 
 namespace Banchou.Part {
     public class LocalInputCommandStream : MonoBehaviour, ICommandStream, IMovementInput {

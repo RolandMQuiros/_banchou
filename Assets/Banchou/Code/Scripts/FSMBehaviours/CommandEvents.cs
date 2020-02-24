@@ -7,19 +7,21 @@ using UniRx;
 using Zenject;
 using Sirenix.OdinInspector;
 
+using Banchou.Combatant;
+
 namespace Banchou.FSM {
     public class CommandEvents : FSMBehaviour {
-        [SerializeField, DrawWithUnity] private Part.Command[] _commands = null;
+        [SerializeField, DrawWithUnity] private Command[] _commands = null;
         [SerializeField] private bool _filter = false;
         [Inject] private Part.ICommandStream _commandStream = null;
-        private Dictionary<Part.Command, int> _lookup;
+        private Dictionary<Command, int> _lookup;
 
         [Inject]
         public void Attach(Animator stateMachine) {
-            IEnumerable<Part.Command> commands;
+            IEnumerable<Command> commands;
             if (_filter) {
-                commands = Enum.GetValues(typeof(Part.Command))
-                    .Cast<Part.Command>()
+                commands = Enum.GetValues(typeof(Command))
+                    .Cast<Command>()
                     .Except(_commands);
             } else {
                 commands = _commands;
@@ -30,7 +32,7 @@ namespace Banchou.FSM {
                     stateMachine.parameters,
                     inner => Regex.Replace($"[Command] {inner.ToString()}", "([A-Z])([A-Z])([a-z])|([a-z])([A-Z])", "$1$4 $2$3$5"),
                     outer => outer.name,
-                    (inner, outer) => new KeyValuePair<Part.Command, int>(inner, outer.nameHash)
+                    (inner, outer) => new KeyValuePair<Command, int>(inner, outer.nameHash)
                 )
                 .ToDictionary(p => p.Key, p => p.Value);
         }

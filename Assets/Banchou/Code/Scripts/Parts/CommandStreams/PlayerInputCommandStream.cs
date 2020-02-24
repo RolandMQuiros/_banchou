@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UniRx;
 using Zenject;
+
+using Banchou.Combatant;
 
 namespace Banchou.Part {
     public class PlayerInputCommandStream : MonoBehaviour, ICommandStream {

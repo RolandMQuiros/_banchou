@@ -3,12 +3,14 @@ using Zenject;
 using UniRx;
 using UniRx.Triggers;
 
-namespace Banchou.Pawn {
+using Banchou.Combatant;
+
+namespace Banchou.Part {
     public class HitVolume : MonoBehaviour {
         [Inject]
         public void Construct(
             Dispatcher dispatch,
-            PawnActions actions,
+            CombatantActions actions,
             [Inject(Id = "PawnID")] string pawnID
         ) {
             this.OnTriggerEnterAsObservable()

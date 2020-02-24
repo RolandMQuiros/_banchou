@@ -13,7 +13,7 @@ namespace Redux
                     actionsCreator(dispatch, store.GetState);
                 }
 
-                return action;
+                return dispatch(action);
             };
         }
     }

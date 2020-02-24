@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 
 using Banchou.Pawn;
+using Banchou.Combatant;
 
 namespace Banchou.Board {
     internal static class BoardReducer {
         public static BoardState Reduce(in BoardState prev, in object action) {
             var addPawn = action as StateAction.AddPawn;
             if (addPawn != null) {
+                var id = Guid.NewGuid().ToString();
                 return new BoardState(prev) {
                     Pawns = new Dictionary<string, PawnState>(prev.Pawns) {
-                        [addPawn.ID] = new PawnState {
-                            ID = addPawn.ID,
+                        [id] = new PawnState {
+                            ID = id,
                             PrefabKey = addPawn.PrefabKey,
                             DisplayName = addPawn.DisplayName,
                             CameraWeight = addPawn.CameraWeight,
-                            Health = 100,
                             InitialPosition = addPawn.Position
                         }
                     }
@@ -34,23 +35,27 @@ namespace Banchou.Board {
             var pawnAction = action as Pawn.StateAction.PawnAction;
             if (pawnAction != null) {
                 PawnState pawn;
-                if (prev.Pawns.TryGetValue(pawnAction.PawnID, out pawn)) {
-                    // Check for team damage
-                    var damage = action as Pawn.StateAction.DamagePawn;
-                    if (damage != null) {
-                        var other = prev.Pawns.Get(damage?.From);
-                        // TODO?: Friendly fire
-                        if (other != null && other.Team == pawn.Team ) {
-                            return prev;
-                        }
-                    }
+                if (prev.Pawns.TryGetValue(pawnAction.ID, out pawn)) {
                     return new BoardState(prev) {
                         Pawns = new Dictionary<string, PawnState>(prev.Pawns) {
-                            [pawnAction.PawnID] = PawnReducer.Reduce(pawn, action)
+                            [pawnAction.ID] = PawnReducer.Reduce(pawn, action)
                         }
                     };
                 }
             }
+
+            var combatantAction = action as Combatant.StateAction.CombatantAction;
+            if (combatantAction != null) {
+                CombatantState combatant;
+                if (prev.Combatants.TryGetValue(combatantAction.ID, out combatant)) {
+                    return new BoardState(prev) {
+                        Combatants = new Dictionary<string, CombatantState> {
+                            [combatantAction.ID] = CombatantReducer.Reduce(combatant, action)
+                        }
+                    };
+                }
+            }
+
             return prev;
         }
     }

@@ -19,49 +19,19 @@ namespace Banchou.Board {
     }
 
     public class BoardActions {
-        private Transform _pawnParent;
-        private PawnCatalog _pawnCatalog;
-        private CreatePawnInstance _createPawn;
-        private DestroyPawnInstance _destroyPawn;
-
-        public BoardActions(
-            Transform pawnParent,
-            PawnCatalog pawnCatalog,
-            CreatePawnInstance createPawn,
-            DestroyPawnInstance destroyPawn
-        ) {
-            _pawnParent = pawnParent;
-            _pawnCatalog = pawnCatalog;
-            _createPawn = createPawn;
-            _destroyPawn = destroyPawn;
-        }
-
-        public ActionsCreator<GameState> AddPawn(
+        public StateAction.AddPawn AddPawn(
             string prefabKey,
             string displayName = null,
             float cameraWeight = 0f,
             Vector3 position = default(Vector3)
-        ) => (dispatch, getState) => {
-            var id = Guid.NewGuid().ToString();
-            var instance = _createPawn.Invoke(id, prefabKey, position);
-            instance.name = string.IsNullOrWhiteSpace(displayName) ? 
-                $"[{prefabKey}] {id}" :
-                displayName;
-
-            dispatch(new StateAction.AddPawn {
-                ID = id,
-                PrefabKey = prefabKey,
-                DisplayName = displayName,
-                CameraWeight = cameraWeight,
-                Position = position
-            });
+        ) => new StateAction.AddPawn {
+            PrefabKey = prefabKey,
+            DisplayName = displayName,
+            CameraWeight = cameraWeight,
+            Position = position
         };
 
-        public ActionsCreator<GameState> RemovePawn(string id) =>
-            (dispatch, getState) => {
-                // Dispatch before actually destroying, so subscribers have a change to clean up
-                dispatch(new StateAction.RemovePawn { ID = id });
-                _destroyPawn(id);
-            };
+        public StateAction.RemovePawn RemovePawn(string id) =>
+            new StateAction.RemovePawn { ID = id };
     }
 }

@@ -1,65 +1,62 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 using Zenject;
+
 using Banchou.Pawn;
 
 namespace Banchou.Board {
+    public delegate GameObject GetPawnInstance(string id);
+
     public class BoardInstaller : MonoInstaller {
         [SerializeField]private PawnCatalog _catalog = null;
         [SerializeField]private Transform _pawnParent = null;
 
-        public override void InstallBindings() {
-            var prefabs = _catalog.Prefabs;
-            var pawnInstances = new Dictionary<string, GameObject>();
+        private Dictionary<string, GameObject> _prefabs;
+        private Dictionary<string, GameObject> _pawnInstances = new Dictionary<string, GameObject>();
 
-            Container.Bind<CreatePawnInstance>()
-                .FromInstance(
-                    // Return a Pawn creation function. No factory boilerplate needed
-                    (id, prefabKey, position, rotation) => {
-                        GameObject prefab;
-                        if (prefabs.TryGetValue(prefabKey, out prefab)) {
-                            var pawn = Container.InstantiatePrefabForComponent<PawnInstaller>(
-                                prefab,
-                                position,
-                                rotation,
-                                _pawnParent,
-                                extraArgs: new object[] { id }
-                            );
-                            pawnInstances[id] = pawn.gameObject;
-                            return pawn;
-                        }
-                        return null;
-                    }
-                ).WhenInjectedInto<BoardActions>();
-            Container.Bind<DestroyPawnInstance>()
-                .FromInstance(
-                    id => {
-                        GameObject instance;
-                        if (pawnInstances.TryGetValue(id, out instance)) {
-                            GameObject.Destroy(instance);
-                        }
-                    }
-                ).WhenInjectedInto<BoardActions>();
-            Container.Bind<Transform>()
-                .FromInstance(_pawnParent)
-                .WhenInjectedInto<BoardActions>();
-            Container.Bind<PawnCatalog>()
-                .FromInstance(_catalog)
-                .WhenInjectedInto<BoardActions>();
-            
-            Container.Bind<GetPawnInstance>()
-                .FromInstance(id => pawnInstances[id]);
-            
+        [Inject]
+        public void Construct(IObservable<GameState> observeState) {
+            _prefabs = _catalog.Prefabs;
+
+            if (_pawnParent == null) {
+                _pawnParent = (new GameObject("Pawns/")).transform;
+                _pawnParent.parent = transform;
+            }
+
+            observeState.EachAddedPawn().Subscribe(CreatePawnInstance);
+            observeState.EachRemovedPawn().Subscribe(p => DestroyPawnInstance(p.ID));
+        }
+
+        public override void InstallBindings() {
+            Container.Bind<GetPawnInstance>().FromInstance(GetPawnInstance);
             Container.Bind<BoardActions>().AsTransient();
         }
+
+        private void CreatePawnInstance(PawnState pawnState) {
+            GameObject prefab;
+            if (_prefabs.TryGetValue(pawnState.PrefabKey, out prefab)) {
+                var pawn = Container.InstantiatePrefabForComponent<PawnInstaller>(
+                    prefab,
+                    pawnState.InitialPosition,
+                    Quaternion.identity,
+                    _pawnParent,
+                    extraArgs: new object[] { pawnState.ID }
+                );
+                _pawnInstances[pawnState.ID] = pawn.gameObject;
+            }
+        }
+
+        private void DestroyPawnInstance(string id) {
+            GameObject instance;
+            if (_pawnInstances.TryGetValue(id, out instance)) {
+                GameObject.Destroy(instance);
+            }
+        }
+
+        private GameObject GetPawnInstance(string id) {
+            return _pawnInstances[id];
+        }
     }
-
-    
-    public delegate PawnInstaller CreatePawnInstance(
-        string id, string prefabKey, Vector3 position = default, Quaternion rotation = default
-    );
-
-    public delegate GameObject GetPawnInstance(string id);
-
-    public delegate void DestroyPawnInstance(string id);
 }
