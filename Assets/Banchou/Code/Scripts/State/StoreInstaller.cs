@@ -12,7 +12,7 @@ namespace Banchou {
     public delegate object Dispatcher(object action);
     
     public class StoreInstaller : MonoInstaller {
-        [SerializeField, AssetsOnly] private GameStateInstance _defaultState = null;
+        [SerializeField, AssetsOnly] private GameStateAsset _defaultState = null;
         public override void InstallBindings() {
             var middleware = GetComponents<IMiddleware<GameState>>();
             var store = new Store<GameState>(
