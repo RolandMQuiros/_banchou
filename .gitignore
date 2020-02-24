@@ -31,6 +31,9 @@
 # Odin
 [Aa]ssets/Plugins/Sirenix*
 
+# Ingame Debug Console
+[Aa]ssets/Plugins/IngameDebugConsole*
+
 # Visual Studio cache directory
 .vs/
 

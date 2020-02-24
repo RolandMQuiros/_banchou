@@ -9,14 +9,14 @@ namespace Banchou.Combatant {
             prev;
 
         private static CombatantState ApplyDamage(in CombatantState prev, in object action) {
-            var heal = action as StateAction.HealPawn;
+            var heal = action as StateAction.Heal;
             if (heal != null) {
                 return new CombatantState(prev) {
                     Health = prev.Health + heal.Amount
                 };
             }
 
-            var damage = action as StateAction.DamagePawn;
+            var damage = action as StateAction.Hurt;
             if (damage != null) {
                 return new CombatantState(prev) {
                     Health = prev.Health - damage.Amount,
@@ -35,14 +35,14 @@ namespace Banchou.Combatant {
         }
 
         private static CombatantState ApplyCommands(in CombatantState prev, in object action) {
-            var push = action as StateAction.PushPawnCommand;
+            var push = action as StateAction.PushCommand;
             if (push != null) {
                 return new CombatantState(prev) {
                     Commands = prev.Commands.Append(push.Command)
                 };
             }
 
-            var pop = action as StateAction.PopPawnCommand;
+            var pop = action as StateAction.PopCommand;
             if (pop != null) {
                 return new CombatantState(prev) {
                     Commands = prev.Commands
@@ -52,7 +52,7 @@ namespace Banchou.Combatant {
                 };
             }
 
-            var clear = action as StateAction.ClearPawnCommands;
+            var clear = action as StateAction.ClearCommands;
             if (clear != null) {
                 return new CombatantState(prev) {
                     Commands = Enumerable.Empty<Command>()

@@ -5,6 +5,7 @@ using UniRx;
 using Zenject;
 
 using Banchou.Pawn;
+using Banchou.Combatant;
 
 namespace Banchou.Board {
     public delegate GameObject GetPawnInstance(string id);
@@ -32,6 +33,8 @@ namespace Banchou.Board {
         public override void InstallBindings() {
             Container.Bind<GetPawnInstance>().FromInstance(GetPawnInstance);
             Container.Bind<BoardActions>().AsTransient();
+            Container.Bind<PawnActions>().AsTransient();
+            Container.Bind<CombatantActions>().AsTransient();
         }
 
         private void CreatePawnInstance(PawnState pawnState) {
