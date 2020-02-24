@@ -20,6 +20,7 @@ namespace Banchou {
                 _defaultState.GameState,
                 middleware
                     .Select(m => m.Middleware)
+                    .Append(Redux.Middlewares.Thunk)
                     .ToArray()
             );
 

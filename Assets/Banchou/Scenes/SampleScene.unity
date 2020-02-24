@@ -159,7 +159,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh45290
+  m_Name: pb_Mesh20622
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -326,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361457194}
   - component: {fileID: 361457193}
+  - component: {fileID: 361457195}
   m_Layer: 0
   m_Name: TargetGroup1
   m_TagString: Untagged
@@ -348,19 +349,7 @@ MonoBehaviour:
   m_PositionMode: 1
   m_RotationMode: 0
   m_UpdateMethod: 2
-  m_Targets:
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
+  m_Targets: []
 --- !u!4 &361457194
 Transform:
   m_ObjectHideFlags: 0
@@ -369,12 +358,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361457192}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.91, y: 1, z: -0.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 390008844}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &361457195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361457192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7aa62f9c39278c4bbfc528924d0af57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &390008842
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +386,8 @@ GameObject:
   m_Component:
   - component: {fileID: 390008844}
   - component: {fileID: 390008843}
+  - component: {fileID: 390008846}
+  - component: {fileID: 390008845}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -405,7 +408,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 390008846}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -442,6 +446,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &390008845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390008842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe42f1495bb7223498dd3af3915f777a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &390008846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390008842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fc8b4a94b91d046a9adb1e9b3a5531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _catalog: {fileID: 11400000, guid: 7b9fe5a2f00d33b48886be075157c30e, type: 2}
+  _pawnParent: {fileID: 1893145939}
 --- !u!1 &599066314
 GameObject:
   m_ObjectHideFlags: 3
@@ -2151,7 +2181,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 39
+  field of view: 3
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2177,7 +2207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.2164396, y: -0, z: -0, w: 0.97629607}
-  m_LocalPosition: {x: 11.91, y: 5.226182, z: -9.923078}
+  m_LocalPosition: {x: 0, y: 1274.1201, z: -2732.3596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 309974411}
@@ -2327,8 +2357,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 361457194}
+  m_Follow: {fileID: 361457194}
   m_Lens:
     FieldOfView: 39
     OrthographicSize: 10
@@ -2352,7 +2382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458206808}
   m_LocalRotation: {x: 0.2164396, y: -0, z: -0, w: 0.97629607}
-  m_LocalPosition: {x: 11.91, y: 5.226182, z: -9.923078}
+  m_LocalPosition: {x: 0, y: 1274.1201, z: -2732.3596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 945992097}
@@ -2638,9 +2668,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1893145939}
-  - component: {fileID: 1893145941}
-  - component: {fileID: 1893145940}
-  - component: {fileID: 1893145942}
   m_Layer: 0
   m_Name: Pawns
   m_TagString: Untagged
@@ -2662,46 +2689,3 @@ Transform:
   m_Father: {fileID: 390008844}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1893145940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893145938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627d5448d9a5ff6478e5ed5186163918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _catalog: {fileID: 11400000, guid: 7b9fe5a2f00d33b48886be075157c30e, type: 2}
---- !u!114 &1893145941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893145938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: 1893145940}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
---- !u!114 &1893145942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893145938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ae07292d35fd514e8ee70e4125e31ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

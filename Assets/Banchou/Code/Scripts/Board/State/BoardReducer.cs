@@ -8,17 +8,15 @@ namespace Banchou.Board {
         public static BoardState Reduce(in BoardState prev, in object action) {
             var addPawn = action as StateAction.AddPawn;
             if (addPawn != null) {
-                var pawnID = Guid.NewGuid().ToString();
                 return new BoardState(prev) {
                     Pawns = new Dictionary<string, PawnState>(prev.Pawns) {
-                        [pawnID] = new PawnState {
-                            ID = pawnID,
+                        [addPawn.ID] = new PawnState {
+                            ID = addPawn.ID,
                             PrefabKey = addPawn.PrefabKey,
-                            DisplayName = string.IsNullOrWhiteSpace(addPawn.DisplayName) ?
-                                $"[{addPawn.PrefabKey}] {pawnID}" :
-                                addPawn.DisplayName,
+                            DisplayName = addPawn.DisplayName,
+                            CameraWeight = addPawn.CameraWeight,
                             Health = 100,
-                            InitialPosition = addPawn.Position   
+                            InitialPosition = addPawn.Position
                         }
                     }
                 };
