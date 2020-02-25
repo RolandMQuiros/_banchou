@@ -6,4 +6,4 @@ namespace Banchou {
     public class GameStateAsset : SerializedScriptableObject{
         public GameState GameState = new GameState();
     }
-}s
+}
