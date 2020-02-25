@@ -35,6 +35,8 @@ namespace Banchou.Board {
             Container.Bind<BoardActions>().AsTransient();
             Container.Bind<PawnActions>().AsTransient();
             Container.Bind<CombatantActions>().AsTransient();
+
+            Container.Instantiate<Debug.ConsoleCommandRegister>();
         }
 
         private void CreatePawnInstance(PawnState pawnState) {

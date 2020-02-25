@@ -12,7 +12,7 @@ namespace Banchou.Combatant {
             public Vector3 Push;
         }
 
-        public class Launched : CombatantAction { }
+        public class Launch : CombatantAction { }
 
         public class Heal : CombatantAction {
             public int Amount;
@@ -27,14 +27,14 @@ namespace Banchou.Combatant {
     }
 
     public class CombatantActions {
-        public StateAction.Hurt DamagePawn(
+        public StateAction.Hurt Hurt(
             string pawnID,
             string from = default,
             int amount = 0,
             Vector3 push = default
         ) => new StateAction.Hurt { ID = pawnID, From = from, Amount = amount, Push = push};
-        public StateAction.Launched Launched(string pawnID) => new StateAction.Launched { ID = pawnID };
-        public StateAction.Heal HealPawn(string pawnID, int amount) => new StateAction.Heal {
+        public StateAction.Launch Launch(string pawnID) => new StateAction.Launch { ID = pawnID };
+        public StateAction.Heal Heal(string pawnID, int amount) => new StateAction.Heal {
             ID = pawnID,
             Amount = amount
         };

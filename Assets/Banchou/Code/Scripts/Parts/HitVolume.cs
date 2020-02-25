@@ -18,7 +18,7 @@ namespace Banchou.Part {
                 .Where(hurt => hurt != null)
                 .Subscribe(hurt => {
                     dispatch(
-                        actions.DamagePawn(
+                        actions.Hurt(
                             pawnID,
                             from: hurt.PawnID,
                             amount: hurt.BaseDamage

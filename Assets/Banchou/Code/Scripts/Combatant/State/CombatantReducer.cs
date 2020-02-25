@@ -24,7 +24,7 @@ namespace Banchou.Combatant {
                 };
             }
 
-            var pushed = action as StateAction.Launched;
+            var pushed = action as StateAction.Launch;
             if (pushed != null) {
                 return new CombatantState(prev) {
                     Push = Vector3.zero
