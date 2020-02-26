@@ -34,6 +34,9 @@
 # Ingame Debug Console
 [Aa]ssets/Plugins/IngameDebugConsole*
 
+# YarnSpinner
+[Aa]ssets/Plugins/YarnSpinner*
+
 # Visual Studio cache directory
 .vs/
 

@@ -13,7 +13,7 @@ namespace Banchou {
         [Inject]
         public void Construct(
             IObservable<GameState> observeState,
-            GetPawnInstance getPawnInstance
+            IPawnInstances pawnInstances
         ) {
             var targetGroup = GetComponent<CinemachineTargetGroup>();
             observeState.AddedPawns()
@@ -21,7 +21,7 @@ namespace Banchou {
                 .Where(pawn => pawn.CameraWeight > 0f)
                 .Subscribe(pawn => {
                     targetGroup.AddMember(
-                        getPawnInstance(pawn.ID).transform,
+                        pawnInstances.Get(pawn.ID).transform,
                         pawn.CameraWeight,
                         1f
                     );
@@ -30,7 +30,7 @@ namespace Banchou {
                 .SelectMany(pawns => pawns)
                 .Subscribe(pawn => {
                     targetGroup.RemoveMember(
-                        getPawnInstance(pawn.ID).transform
+                        pawnInstances.Get(pawn.ID).transform
                     );
                 });
 

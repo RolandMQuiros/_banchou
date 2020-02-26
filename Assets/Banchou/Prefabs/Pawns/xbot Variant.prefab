@@ -330,7 +330,6 @@ MonoBehaviour:
   _tiltSpeedThreshold: 5
   _pullLag: 0.05
   _camera: {fileID: 0}
-  _orientation: {fileID: 9209241876223166657}
   _debugMovement: {x: 0, y: 0}
   _debugSpeed: 0
 --- !u!114 &1606362821
@@ -345,19 +344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb603a3da301d8b4aac226a62e8791e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &13733875203248509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302589891450370770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19d5953ffe0c4243a2b2fede1f988b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
 --- !u!114 &1474124857097688950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,7 +800,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
         type: 3}
       propertyPath: m_Name
-      value: xbot
+      value: xbot Variant
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 301f36d01554a2b4b9a1bfb53302a9ca,
         type: 3}

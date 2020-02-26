@@ -159,7 +159,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27396
+  m_Name: pb_Mesh31064
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 390008843}
   - component: {fileID: 390008846}
   - component: {fileID: 390008845}
+  - component: {fileID: 390008847}
   m_Layer: 0
   m_Name: SceneContext/
   m_TagString: Untagged
@@ -473,8 +474,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fc8b4a94b91d046a9adb1e9b3a5531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _catalog: {fileID: 11400000, guid: 7b9fe5a2f00d33b48886be075157c30e, type: 2}
   _pawnParent: {fileID: 487537358}
+  _catalog: {fileID: 11400000, guid: 7b9fe5a2f00d33b48886be075157c30e, type: 2}
+--- !u!114 &390008847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390008842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8671cb22d9cedc4e9a1957afa1ae9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &487537357
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,7 +843,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1, y: 0, z: 1, w: 3.612e-41}
+  m_BoundingSphereOverride: {x: 0, y: 1.1121e-41, z: 3.59e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2214,7 +2227,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 3
+  field of view: 39
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2293,6 +2306,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11452418, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: enablePopup
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452418, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
+      propertyPath: startMinimized
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11490438, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}

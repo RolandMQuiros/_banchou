@@ -33,9 +33,6 @@ namespace Banchou.Pawn {
             Container.Bind<Part.Targettable>().FromInstance(
                 GetComponentInChildren<Part.Targettable>()
             );
-            Container.Bind<Part.ViewInputAxis>().FromInstance(
-                GetComponentInChildren<Part.ViewInputAxis>()
-            );
         }
 
         private void OnAnimatorMove() { }

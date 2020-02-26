@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using IngameDebugConsole;
+﻿using IngameDebugConsole;
 using Zenject;
 using UnityEngine;
 
@@ -9,10 +7,10 @@ using Banchou.Pawn;
 using Banchou.Combatant;
 
 namespace Banchou.Debug {
-    public class ConsoleCommandRegister {
+    public class ConsoleCommandRegister : MonoBehaviour {
         private Vector3 GetMousePosition() {
             RaycastHit hitInfo;
-            var ray = Camera.main.ViewportPointToRay(Input.mousePosition);
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out hitInfo);
             return hitInfo.point;
         }
@@ -74,6 +72,11 @@ namespace Banchou.Debug {
                     dispatch(actions.Launch(id));
                 }
             );
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(GetMousePosition(), 0.4f);
         }
     }
 }
