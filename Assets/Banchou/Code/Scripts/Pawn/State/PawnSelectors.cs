@@ -5,7 +5,7 @@ using UniRx;
 
 namespace Banchou.Pawn {
     public static class PawnSelectors {
-        public static PawnState GetPawn(this GameState state, string id) {
+        public static PawnState GetPawn(this GameState state, Guid id) {
             var pawns = state.Board?.Pawns;
             PawnState pawnState;
             if (pawns.TryGetValue(id, out pawnState)) {

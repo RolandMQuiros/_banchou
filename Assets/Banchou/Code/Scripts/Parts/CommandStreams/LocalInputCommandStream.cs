@@ -21,7 +21,6 @@ namespace Banchou.Part {
         [SerializeField] private float _attackTapThreshold = 0.25f;
         [SerializeField] private float _jumpTapThreshold = 0.1f;
         [SerializeField] private float _tiltSpeedThreshold = 1f;
-        //[SerializeField, Range(0f, 1f)] private float _pushThreshold = 0.7f;
         [SerializeField] private float _pullLag = 0.35f;
 
         [Header("References")]
@@ -188,20 +187,10 @@ namespace Banchou.Part {
         #endregion
         
         private Vector3 _lastDirection;
-
         private void Start() {
             DirectionLag.Subscribe(d => _lastDirection = d);
             Tilt.Subscribe(tilt => _debugSpeed = (float)Math.Round((double)tilt.Speed, 1));
-
             _camera = Camera.main?.transform;
-            // var playerInput = GetComponent<PlayerInput>();
-            // Observable.FromEvent<InputAction.CallbackContext>(
-            //     handler => playerInput.onActionTriggered += handler,
-            //     handler => playerInput.onActionTriggered -= handler
-            // ).Subscribe(context => {
-                
-            // });
-            
         }
 
         private void OnDrawGizmos() {

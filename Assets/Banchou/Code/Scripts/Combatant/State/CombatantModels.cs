@@ -42,17 +42,17 @@ namespace Banchou.Combatant {
 
 
     public class CombatantState {
-        public string PawnID;
+        public Guid PawnID = Guid.Empty;
         public Team Team = Team.Neutral;
         public int Health = -1;
         public Vector3 Push;
-        public IEnumerable<Command> Commands = Enumerable.Empty<Command>();
+        public Command Command;
         public DateTime Created = DateTime.UtcNow;
         public DateTime Updated = DateTime.UtcNow;
         public CombatantState() { }
         public CombatantState(in CombatantState prev) {
-            PawnID = prev?.PawnID;
-            Commands = prev?.Commands;
+            PawnID = prev?.PawnID ?? Guid.Empty;
+            Command = prev?.Command ?? Command.None;
             Health = prev?.Health ?? -1;
             Push = prev?.Push ?? Vector3.zero;
             Created = prev?.Created ?? DateTime.UtcNow;

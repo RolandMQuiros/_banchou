@@ -38,27 +38,9 @@ namespace Banchou.Combatant {
             var push = action as StateAction.PushCommand;
             if (push != null) {
                 return new CombatantState(prev) {
-                    Commands = prev.Commands.Append(push.Command)
+                    Command = push.Command
                 };
             }
-
-            var pop = action as StateAction.PopCommand;
-            if (pop != null) {
-                return new CombatantState(prev) {
-                    Commands = prev.Commands
-                        .Reverse()
-                        .Skip(1)
-                        .Reverse()
-                };
-            }
-
-            var clear = action as StateAction.ClearCommands;
-            if (clear != null) {
-                return new CombatantState(prev) {
-                    Commands = Enumerable.Empty<Command>()
-                };
-            }
-
             return null;
         }
     }

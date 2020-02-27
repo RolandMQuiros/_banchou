@@ -3,10 +3,7 @@ using Zenject;
 
 namespace Banchou.Pawn {
     public class CombatantInstaller : MonoInstaller {
-        public string PawnID { get; set; }
-
         public override void InstallBindings() {
-            Container.Bind<string>().WithId("PawnID").FromInstance(PawnID);
             Container.Bind<PawnActions>().AsCached();
 
             Container.Bind<Rigidbody>().FromInstance(

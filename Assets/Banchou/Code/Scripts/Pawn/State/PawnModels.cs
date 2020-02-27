@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Banchou.Pawn {
     public class PawnState {
-        public string ID;
+        public Guid ID = Guid.Empty;
         public string PrefabKey = string.Empty;
         public string DisplayName = string.Empty;
         public float CameraWeight = 0f;
@@ -12,7 +12,7 @@ namespace Banchou.Pawn {
         public DateTime Updated = DateTime.UtcNow;
         public PawnState() { }
         public PawnState(in PawnState prev) {
-            ID = prev?.ID ?? string.Empty;
+            ID = prev?.ID ?? Guid.Empty;
             PrefabKey = prev?.PrefabKey ?? string.Empty;
             DisplayName = prev?.DisplayName ?? string.Empty;
             CameraWeight = prev?.CameraWeight ?? 0f;

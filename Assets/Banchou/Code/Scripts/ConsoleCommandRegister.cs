@@ -1,4 +1,5 @@
-﻿using IngameDebugConsole;
+﻿using System;
+using IngameDebugConsole;
 using Zenject;
 using UnityEngine;
 
@@ -40,7 +41,7 @@ namespace Banchou.Debug {
             DebugLogConsole.AddCommand(
                 command: "RemovePawn",
                 description: "Removes a pawn from the board",
-                method: (string id) => { dispatch(actions.RemovePawn(id)); }
+                method: (string id) => { dispatch(actions.RemovePawn(Guid.Parse(id))); }
             );
         }
 
@@ -53,7 +54,7 @@ namespace Banchou.Debug {
                 command: "Hurt",
                 description: "Apply damage to a Combatant",
                 method: (string id, int amount, Vector3 push) => {
-                    dispatch(actions.Hurt(pawnID: id, amount: amount, push: push));
+                    dispatch(actions.Hurt(pawnID: Guid.Parse(id), amount: amount, push: push));
                 }
             );
 
@@ -61,7 +62,7 @@ namespace Banchou.Debug {
                 command: "Heal",
                 description: "Heal a Combatant",
                 method: (string id, int amount) => {
-                    dispatch(actions.Heal(pawnID: id, amount: amount));
+                    dispatch(actions.Heal(pawnID: Guid.Parse(id), amount: amount));
                 }
             );
 
@@ -69,7 +70,7 @@ namespace Banchou.Debug {
                 command: "Launch",
                 description: "Launch a Combatant",
                 method: (string id, Vector3 push) => {
-                    dispatch(actions.Launch(id));
+                    dispatch(actions.Launch(Guid.Parse(id)));
                 }
             );
         }

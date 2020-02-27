@@ -258,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 6062416127573631437}
   - {fileID: 2146654575}
   _installerPrefabs: []
   _autoRun: 1
@@ -289,7 +290,7 @@ MonoBehaviour:
   _terrainMask:
     serializedVersion: 2
     m_Bits: 257
---- !u!114 &2685596506362577931
+--- !u!114 &6062416127573631437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

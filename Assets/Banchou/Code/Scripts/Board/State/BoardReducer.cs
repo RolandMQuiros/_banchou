@@ -14,8 +14,8 @@ namespace Banchou.Board {
         private static BoardState ApplyPawnActions(in BoardState prev, in object action) {
             var addPawn = action as StateAction.AddPawn;
             if (addPawn != null) {
-                var id = Guid.NewGuid().ToString();
-                var pawns = new Dictionary<string, PawnState>(prev.Pawns) {
+                var id = Guid.NewGuid();
+                var pawns = new Dictionary<Guid, PawnState>(prev.Pawns) {
                     [id] = new PawnState {
                         ID = id,
                         PrefabKey = addPawn.PrefabKey,
@@ -28,7 +28,7 @@ namespace Banchou.Board {
                 var addCombatant = action as StateAction.AddCombatant;
                 var combatants = prev.Combatants;
                 if (addCombatant != null) {
-                    combatants = new Dictionary<string, CombatantState>(prev.Combatants) {
+                    combatants = new Dictionary<Guid, CombatantState>(prev.Combatants) {
                         [id] = new CombatantState {
                             PawnID = id,
                             Health = addCombatant.Health
@@ -44,7 +44,7 @@ namespace Banchou.Board {
 
             var removePawn = action as StateAction.RemovePawn;
             if (removePawn != null && prev.Pawns.ContainsKey(removePawn.ID)) {
-                var pawns = new Dictionary<string, PawnState>(prev.Pawns);
+                var pawns = new Dictionary<Guid, PawnState>(prev.Pawns);
                 pawns.Remove(removePawn.ID);
 
                 var combatants = prev.Combatants;
@@ -63,7 +63,7 @@ namespace Banchou.Board {
                 PawnState pawn;
                 if (prev.Pawns.TryGetValue(pawnAction.ID, out pawn)) {
                     return new BoardState(prev) {
-                        Pawns = new Dictionary<string, PawnState>(prev.Pawns) {
+                        Pawns = new Dictionary<Guid, PawnState>(prev.Pawns) {
                             [pawnAction.ID] = PawnReducer.Reduce(pawn, action)
                         }
                     };
@@ -79,7 +79,7 @@ namespace Banchou.Board {
                 CombatantState combatant;
                 if (prev.Combatants.TryGetValue(combatantAction.ID, out combatant)) {
                     return new BoardState(prev) {
-                        Combatants = new Dictionary<string, CombatantState> {
+                        Combatants = new Dictionary<Guid, CombatantState> {
                             [combatantAction.ID] = CombatantReducer.Reduce(combatant, action)
                         }
                     };

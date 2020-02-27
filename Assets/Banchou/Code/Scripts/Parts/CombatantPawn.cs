@@ -11,7 +11,6 @@ namespace Banchou.Part {
     /// </summary>
     [RequireComponent(typeof(Animator))]
     public class CombatantPawn : MonoBehaviour {
-        public string PawnID { get; set; }
         [Header("Stat FSM Parameters")]
         [SerializeField] private string _healthParameter = "Health";
 
@@ -22,11 +21,11 @@ namespace Banchou.Part {
         [SerializeField] private string _pushZParameter = "Push Z";
 
         [Inject]
-        public void Connect(IObservable<GameState> observeState, Dispatcher dispatch) {
+        public void Connect(IObservable<GameState> observeState, Dispatcher dispatch, Guid pawnID) {
             var stateMachine = GetComponent<Animator>();
             
             var observePawn = observeState
-                .Select(state => state.GetCombatant(PawnID))
+                .Select(state => state.GetCombatant(pawnID))
                 .Distinct();
             
             // Handle health changes

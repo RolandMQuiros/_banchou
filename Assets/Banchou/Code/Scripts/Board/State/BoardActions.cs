@@ -17,7 +17,7 @@ namespace Banchou.Board {
         }
 
         public class RemovePawn {
-            public string ID;
+            public Guid ID;
         }
     }
 
@@ -48,7 +48,7 @@ namespace Banchou.Board {
             Health = health
         };
 
-        public StateAction.RemovePawn RemovePawn(string id) =>
+        public StateAction.RemovePawn RemovePawn(Guid id) =>
             new StateAction.RemovePawn { ID = id };
     }
 }

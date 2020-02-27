@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Banchou.Combatant {
     namespace StateAction {
         public class CombatantAction {
-            public string ID;
+            public Guid ID;
         }
 
         public class Hurt : CombatantAction {
-            public string From;
+            public Guid From;
             public int Amount;
             public Vector3 Push;
         }
@@ -21,22 +22,23 @@ namespace Banchou.Combatant {
         public class PushCommand : CombatantAction {
             public Command Command;
         }
-
-        public class PopCommand : CombatantAction { }
-        public class ClearCommands : CombatantAction { }
     }
 
     public class CombatantActions {
         public StateAction.Hurt Hurt(
-            string pawnID,
-            string from = default,
+            Guid pawnID,
+            Guid from = default,
             int amount = 0,
             Vector3 push = default
         ) => new StateAction.Hurt { ID = pawnID, From = from, Amount = amount, Push = push};
-        public StateAction.Launch Launch(string pawnID) => new StateAction.Launch { ID = pawnID };
-        public StateAction.Heal Heal(string pawnID, int amount) => new StateAction.Heal {
+        public StateAction.Launch Launch(Guid pawnID) => new StateAction.Launch { ID = pawnID };
+        public StateAction.Heal Heal(Guid pawnID, int amount) => new StateAction.Heal {
             ID = pawnID,
             Amount = amount
+        };
+        public StateAction.PushCommand PushCommand(Guid pawnID, Command command) => new StateAction.PushCommand {
+            ID = pawnID,
+            Command = command
         };
     }
 }

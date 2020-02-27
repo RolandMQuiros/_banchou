@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 using UniRx;
 using UniRx.Triggers;
@@ -11,7 +12,7 @@ namespace Banchou.Part {
         public void Construct(
             Dispatcher dispatch,
             CombatantActions actions,
-            [Inject(Id = "PawnID")] string pawnID
+            Guid pawnID
         ) {
             this.OnTriggerEnterAsObservable()
                 .Select(other => other.GetComponent<HurtVolume>())

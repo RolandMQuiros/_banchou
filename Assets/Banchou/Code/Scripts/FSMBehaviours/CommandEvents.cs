@@ -7,6 +7,7 @@ using UniRx;
 using Zenject;
 using Sirenix.OdinInspector;
 
+using Banchou;
 using Banchou.Combatant;
 
 namespace Banchou.FSM {
@@ -15,6 +16,7 @@ namespace Banchou.FSM {
         [SerializeField] private bool _filter = false;
         [Inject] private Part.ICommandStream _commandStream = null;
         private Dictionary<Command, int> _lookup;
+
 
         [Inject]
         public void Attach(Animator stateMachine) {

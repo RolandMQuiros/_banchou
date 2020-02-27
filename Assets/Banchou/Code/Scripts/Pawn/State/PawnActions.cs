@@ -1,7 +1,9 @@
-﻿namespace Banchou.Pawn {
+﻿using System;
+
+namespace Banchou.Pawn {
     namespace StateAction {
         public class PawnAction {
-            public string ID;
+            public Guid ID;
         }
     }
 
