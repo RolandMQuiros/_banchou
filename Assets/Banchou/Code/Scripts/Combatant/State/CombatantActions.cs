@@ -10,10 +10,14 @@ namespace Banchou.Combatant {
         public class Hurt : CombatantAction {
             public Guid From;
             public int Amount;
-            public Vector3 Push;
+            public Vector3 Launch;
+            public float When;
         }
 
-        public class Launch : CombatantAction { }
+        public class Launch : CombatantAction {
+            public Vector3 Force;
+            public float When;
+        }
 
         public class Heal : CombatantAction {
             public int Amount;
@@ -30,8 +34,11 @@ namespace Banchou.Combatant {
             Guid from = default,
             int amount = 0,
             Vector3 push = default
-        ) => new StateAction.Hurt { ID = pawnID, From = from, Amount = amount, Push = push};
-        public StateAction.Launch Launch(Guid pawnID) => new StateAction.Launch { ID = pawnID };
+        ) => new StateAction.Hurt { ID = pawnID, From = from, Amount = amount, Launch = push, When = Time.time };
+        public StateAction.Launch Launch(
+            Guid pawnID,
+            Vector3 force
+        ) => new StateAction.Launch { ID = pawnID, Force = force, When = Time.time };
         public StateAction.Heal Heal(Guid pawnID, int amount) => new StateAction.Heal {
             ID = pawnID,
             Amount = amount

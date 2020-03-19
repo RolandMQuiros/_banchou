@@ -20,14 +20,20 @@ namespace Banchou.Combatant {
             if (damage != null) {
                 return new CombatantState(prev) {
                     Health = prev.Health - damage.Amount,
-                    Push = damage.Push
+                    Launch = new Launch {
+                        Force = damage.Launch,
+                        When = damage.When
+                    }
                 };
             }
 
             var pushed = action as StateAction.Launch;
             if (pushed != null) {
                 return new CombatantState(prev) {
-                    Push = Vector3.zero
+                    Launch = new Launch {
+                        Force = pushed.Force,
+                        When = pushed.When
+                    }
                 };
             }
             

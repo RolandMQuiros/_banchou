@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Banchou {
+namespace Banchou.FSM {
     public class FSMBehaviour : StateMachineBehaviour {
         private Dictionary<int, List<IDisposable>> _streams = new Dictionary<int, List<IDisposable>>();
 

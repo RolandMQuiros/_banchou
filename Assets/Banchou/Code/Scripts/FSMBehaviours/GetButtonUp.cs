@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Banchou {
+namespace Banchou.FSM {
     public class GetButtonUp : FSMBehaviour {
         [SerializeField] private string _button = string.Empty;
         [SerializeField] private string _event = string.Empty;

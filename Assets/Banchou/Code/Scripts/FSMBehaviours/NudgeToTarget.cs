@@ -3,7 +3,7 @@ using UnityEngine;
 using UniRx;
 using Zenject;
 
-namespace Banchou {
+namespace Banchou.FSM {
     public class NudgeToTarget : FSMBehaviour {
         [SerializeField]private float _speed = 8f;
         [SerializeField]private float _duration = 1f;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Banchou {
+namespace Banchou.FSM {
     public class InputMovement : FSMBehaviour {
         [SerializeField, Tooltip("How quickly, in units per second, the object moves along its motion vector")]
         private float _movementSpeed = 8f;

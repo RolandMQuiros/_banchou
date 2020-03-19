@@ -40,12 +40,16 @@ namespace Banchou.Combatant {
         Prop
     }
 
+    public struct Launch {
+        public Vector3 Force;
+        public float When;
+    }
 
     public class CombatantState {
         public Guid PawnID = Guid.Empty;
         public Team Team = Team.Neutral;
         public int Health = -1;
-        public Vector3 Push;
+        public Launch Launch;
         public Command Command;
         public DateTime Created = DateTime.UtcNow;
         public DateTime Updated = DateTime.UtcNow;
@@ -54,7 +58,7 @@ namespace Banchou.Combatant {
             PawnID = prev?.PawnID ?? Guid.Empty;
             Command = prev?.Command ?? Command.None;
             Health = prev?.Health ?? -1;
-            Push = prev?.Push ?? Vector3.zero;
+            Launch = prev?.Launch ?? new Launch();
             Created = prev?.Created ?? DateTime.UtcNow;
             Updated = DateTime.UtcNow;
         }

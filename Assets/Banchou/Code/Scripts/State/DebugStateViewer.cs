@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 namespace Banchou {
     public class DebugStateViewer : SerializedMonoBehaviour {
-        [ReadOnly] public GameState CurrentState;
+        public GameState CurrentState;
 
         [Inject]
         public void Construct(IObservable<GameState> observeState) {

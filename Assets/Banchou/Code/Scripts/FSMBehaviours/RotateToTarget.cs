@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Banchou {
+namespace Banchou.FSM {
     public class RotateToTarget : FSMBehaviour {
         [SerializeField] private float _targettingPrecision = 0.4f;
         [SerializeField]private float _rotationSpeed = 1000f;

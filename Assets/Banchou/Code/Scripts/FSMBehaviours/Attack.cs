@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Banchou.Pawn.FSM {
+namespace Banchou.FSM {
     public class Attack : FSMBehaviour {
         [SerializeField] private string _button = string.Empty;
         [Header("Animation Parameters")]

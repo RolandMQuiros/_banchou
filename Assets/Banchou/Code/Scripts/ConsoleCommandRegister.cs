@@ -4,10 +4,9 @@ using Zenject;
 using UnityEngine;
 
 using Banchou.Board;
-using Banchou.Pawn;
 using Banchou.Combatant;
 
-namespace Banchou.Debug {
+namespace Banchou {
     public class ConsoleCommandRegister : MonoBehaviour {
         private Vector3 GetMousePosition() {
             RaycastHit hitInfo;
@@ -70,7 +69,7 @@ namespace Banchou.Debug {
                 command: "Launch",
                 description: "Launch a Combatant",
                 method: (string id, Vector3 push) => {
-                    dispatch(actions.Launch(Guid.Parse(id)));
+                    dispatch(actions.Launch(Guid.Parse(id), push));
                 }
             );
         }

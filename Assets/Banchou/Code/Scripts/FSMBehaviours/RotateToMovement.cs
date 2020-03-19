@@ -3,7 +3,7 @@ using UniRx;
 using UniRx.Triggers;
 using Zenject;
 
-namespace Banchou {
+namespace Banchou.FSM {
     public class RotateToMovement : FSMBehaviour {
         [SerializeField] private float _rotationSpeed = 1000f;
         [Inject] private Transform _orientation = null;

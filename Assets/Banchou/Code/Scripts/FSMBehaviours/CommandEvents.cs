@@ -7,7 +7,6 @@ using UniRx;
 using Zenject;
 using Sirenix.OdinInspector;
 
-using Banchou;
 using Banchou.Combatant;
 
 namespace Banchou.FSM {

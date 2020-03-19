@@ -1615,8 +1615,8 @@ MonoBehaviour:
     current loop until hit hits the designated normalized time.
 
 
-    That normalized time also changes for blendtrees, depending on which animation
-    is being used.'
+    That normalized
+    time also changes for blendtrees, depending on which animation is being used.'
 --- !u!1101 &-4112131672725287534
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -2881,91 +2881,115 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Right Velocity
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Forward Velocity
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Vertical Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Is Grounded
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Attack Stage
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: Launch Magnitude
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Launch X
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Launch Y
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Launch Z
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: '[Command] Jump'
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: '[Command] Hop'
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: '[Command] Neutral Light'
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: '[Command] Push Light'
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: '[Command] Pull Light'
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: '[Command] Neutral Heavy'
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: '[Command] Push Heavy'
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: '[Command] Pull Heavy'
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -3261,6 +3285,22 @@ BlendTree:
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
+--- !u!114 &444044165719462036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c68c3673c3fc340bdd09d4e70a6ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _launchMagnitudeParameter: Launch Magnitude
+  _launchXParameter: Launch X
+  _launchYParameter: Launch Y
+  _launchZParameter: Launch Z
 --- !u!1101 &471590416375262929
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -4342,9 +4382,9 @@ AnimatorStateMachine:
     - {fileID: -1420478526868845977}
     - {fileID: 4465528234084754942}
     - {fileID: 4348405956516266464}
-  - first: {fileID: 3284692907232856101}
+  - first: {fileID: -6593190220038298720}
     second:
-    - {fileID: -7868914936022772201}
+    - {fileID: 94368395407801475}
   - first: {fileID: -3517914797529691560}
     second:
     - {fileID: 5973533555387470996}
@@ -4352,12 +4392,13 @@ AnimatorStateMachine:
     second:
     - {fileID: 8786621535313874889}
     - {fileID: -6394099024806995088}
-  - first: {fileID: -6593190220038298720}
+  - first: {fileID: 3284692907232856101}
     second:
-    - {fileID: 94368395407801475}
+    - {fileID: -7868914936022772201}
   m_StateMachineBehaviours:
   - {fileID: 7441089383948958211}
   - {fileID: -1339085210155768168}
+  - {fileID: 444044165719462036}
   m_AnyStatePosition: {x: 330, y: 30, z: 0}
   m_EntryPosition: {x: 330, y: 60, z: 0}
   m_ExitPosition: {x: 800, y: 480, z: 0}
